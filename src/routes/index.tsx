@@ -1,16 +1,21 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import GalaticSpace from "~/components/galatic-space/galatic-space";
+import Present from "~/components/present/present";
+import styles from "./index.css?inline"
 
 export default component$(() => {
+  // Load styles
+  useStylesScoped$(styles);
+  
   return (
-    <>
-      <h1>Hi 👋</h1>
-      <div>
-        Can't wait to see what you build with qwik!
-        <br />
-        Happy coding.
-      </div>
-    </>
+    <div class="home">
+      <GalaticSpace>
+        <div class="home-content">
+          <Present></Present>
+        </div>
+      </GalaticSpace>
+    </div>
   );
 });
 
