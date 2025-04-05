@@ -12,12 +12,12 @@ export default new class VisitsService {
     }
 
     public async incrementVisit(name_project: string) {
-        const [visit] = await Visit.findOrCreate({ 
+        const visit = await Visit.findOrCreate({ 
             where: { name_project },
             defaults: { name_project, count_visit: 0 }
         });
 
-        return (await visit.increment("count_visit")).toJSON();
+        return (await visit[0].increment("count_visit")).toJSON();
     }
     
 }

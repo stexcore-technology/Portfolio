@@ -3,7 +3,7 @@ import IconButton from "~/components/icon-button/icon-button";
 import CardProject from "~/components/card-project/card-project";
 import Navbar, { NavItem } from "~/components/navbar/navbar";
 import { BackIcon } from "~/icons/icons";
-import { routeLoader$, useNavigate } from "@builder.io/qwik-city";
+import { DocumentHead, routeLoader$, useNavigate } from "@builder.io/qwik-city";
 import MainContent from "~/components/main-content/main-content";
 import Divider from "~/components/divider/divider";
 import Header from "~/components/header/header";
@@ -91,3 +91,21 @@ export default component$(() => {
         </>
     )
 });
+
+export const head: DocumentHead = {
+  title: "Projects - Portfolio Stexcore",
+  meta: [
+    {
+      name: "description",
+      content: "Explore the projects and libraries I'm currently working on. Discover how I leverage my expertise in web development, Docker configurations, and dynamic Excel file generation to create innovative and efficient solutions.",
+    },
+    {
+      name: "author",
+      content: "stexcore"
+    },
+    {
+      name: "keywords",
+      content: "portfolio, developments, projects, typescript, html, css, qwik, backend, api, cli"
+    }
+  ],
+};

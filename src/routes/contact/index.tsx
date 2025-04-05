@@ -1,5 +1,5 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { useNavigate } from "@builder.io/qwik-city";
+import { DocumentHead, useNavigate } from "@builder.io/qwik-city";
 import CardContact from "~/components/card-contact/card-contact";
 import IconButton from "~/components/icon-button/icon-button";
 import MainContent from "~/components/main-content/main-content";
@@ -49,3 +49,21 @@ export default component$(() => {
         </>
     );
 });
+
+export const head: DocumentHead = {
+  title: "Contact - Portfolio Stexcore",
+  meta: [
+    {
+      name: "description",
+      content: "Discover the various methods to contact me through my portfolio. Find options like email, social media, and contact forms, designed to make professional communication easy and efficient.",
+    },
+    {
+      name: "author",
+      content: "stexcore"
+    },
+    {
+      name: "keywords",
+      content: "portfolio, projects, contact, whatsapp, email, github"
+    }
+  ],
+};

@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { routeLoader$ } from "@builder.io/qwik-city";
+import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 import Project from "~/components/project/project";
 import visitsService from "~/services/visits.service";
 
@@ -24,3 +24,21 @@ export default component$(() => {
         ></Project>
     );
 });
+
+export const head: DocumentHead = {
+  title: "Create Stexcore Api CLI - Portfolio Stexcore",
+  meta: [
+    {
+      name: "description",
+      content: "A powerful CLI tool to simplify the initialization of API projects in Node.js. Utilizing Express and a scalable project structure, it enables developers to efficiently kick-start robust backend setups.",
+    },
+    {
+      name: "author",
+      content: "stexcore"
+    },
+    {
+      name: "keywords",
+      content: "portfolio, developments, project, typescript, backend, api, cli, library"
+    }
+  ],
+};

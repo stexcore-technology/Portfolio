@@ -27,11 +27,19 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: "Welcome to Qwik",
+  title: "Portfolio Stexcore",
   meta: [
     {
       name: "description",
-      content: "Qwik site description",
+      content: "StexCore Portfolio A Qwik-powered portfolio showcasing all my projects, highlighting expertise and creativity in development.",
     },
+    {
+      name: "author",
+      content: "stexcore"
+    },
+    {
+      name: "keywords",
+      content: "portfolio, developments, projects, typescript, html, css, qwik, backend, api, cli"
+    }
   ],
 };

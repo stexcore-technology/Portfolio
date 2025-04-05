@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { routeLoader$ } from "@builder.io/qwik-city";
+import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 import Project from "~/components/project/project";
 import visitsService from "~/services/visits.service";
 
@@ -24,3 +24,21 @@ export default component$(() => {
         ></Project>
     );
 });
+
+export const head: DocumentHead = {
+  title: "Indexed DB - Portfolio Stexcore",
+  meta: [
+    {
+      name: "description",
+      content: "A JavaScript library offering a database-like structure for managing browser data. Built on IndexedDB, it simplifies CRUD operations and conditional queries with table-like interactions, strong typing, and data validation for seamless client-side data management.",
+    },
+    {
+      name: "author",
+      content: "stexcore"
+    },
+    {
+      name: "keywords",
+      content: "portfolio, developments, project, typescript, javascript, frontend, indexed-db, database, library"
+    }
+  ],
+};

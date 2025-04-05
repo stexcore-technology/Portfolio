@@ -195,7 +195,7 @@ export class Galactic {
     
             // Emit current stars status
             this.emit("state", this.stars);
-        }, 50);
+        }, 16);
     }
     
     /**

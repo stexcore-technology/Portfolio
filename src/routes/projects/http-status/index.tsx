@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { routeLoader$ } from "@builder.io/qwik-city";
+import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 import Project from "~/components/project/project";
 import visitsService from "~/services/visits.service";
 
@@ -24,3 +24,21 @@ export default component$(() => {
         ></Project>
     );
 });
+
+export const head: DocumentHead = {
+  title: "Http Status - Portfolio Stexcore",
+  meta: [
+    {
+      name: "description",
+      content: "A versatile collection of HTTP status codes designed for seamless use in any HTTP framework. Simplifies handling HTTP responses and errors with a user-friendly interface, fully compatible with TypeScript and various frameworks.",
+    },
+    {
+      name: "author",
+      content: "stexcore"
+    },
+    {
+      name: "keywords",
+      content: "portfolio, developments, project, typescript, api, http, status, library"
+    }
+  ],
+};
