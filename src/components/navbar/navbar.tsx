@@ -3,13 +3,15 @@ import { Link } from "@builder.io/qwik-city";
 import styles from "./navbar.module.css";
 
 interface INavItem {
-    href?: string
+    href?: string,
+    title?: string,
+    disabled?: boolean
 }
 
-export const NavItem = component$<INavItem>(({ href }) => {
+export const NavItem = component$<INavItem>(({ href, title, disabled }) => {
     return (
-        <li>
-            <Link class={styles["nav-item"]} href={href}>
+        <li title={title}>
+            <Link class={[styles["nav-item"], { [styles["disabled"]]: disabled }]} href={href}>
                 <Slot></Slot>
             </Link>
         </li>

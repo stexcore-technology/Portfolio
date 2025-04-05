@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { BackIcon } from "~/icons/icons";
+import { BackIcon, EyeIcon, GithubIcon, WhatsappIcon } from "~/icons/icons";
 import ContentProject from "../content-project/content-project";
 import Divider from "../divider/divider";
 import HeaderProject from "../header-project/header-project";
@@ -8,11 +8,13 @@ import IconButton from "../icon-button/icon-button";
 import MainContent from "../main-content/main-content";
 import Navbar, { NavItem } from "../navbar/navbar";
 import { useNavigate } from "@builder.io/qwik-city";
+import { formatViews } from "~/utils/text.util";
 
 interface IProjectProps {
     title: string,
     description: string,
-    html: string
+    html: string,
+    views: number
 }
 
 export default component$<IProjectProps>((props) => {
@@ -25,8 +27,15 @@ export default component$<IProjectProps>((props) => {
                 <IconButton q:slot="start" onClick$={() => navigate("..")}>
                     <BackIcon></BackIcon>
                 </IconButton>
-                <NavItem href="/projects">Projects</NavItem>
-                <NavItem href="/contact">Contact</NavItem>
+                <NavItem title="Views counter for this page" disabled>
+                    <EyeIcon></EyeIcon> {formatViews(props.views)}
+                </NavItem>
+                <NavItem href="https://wa.me/?phone=584242262884">
+                    <WhatsappIcon></WhatsappIcon>
+                </NavItem>
+                <NavItem href="https://github.com/stexcore">
+                    <GithubIcon></GithubIcon>
+                </NavItem>
             </Navbar>
             <MainContent>
                 <HeaderProject

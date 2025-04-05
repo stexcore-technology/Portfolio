@@ -64,6 +64,10 @@ export class Galactic {
      */
     private listenners: {
         /**
+         * Identifier
+         */
+        id: number
+        /**
          * Event type
          */
         event: string,
@@ -206,6 +210,9 @@ export class Galactic {
 
         // Clear interval
         clearInterval(this.timer);
+
+        // Set emply
+        this.timer = null;
     }
 
     /**
@@ -221,7 +228,7 @@ export class Galactic {
         const id = ++this.hListenner;
 
         // Append listenner
-        this.listenners.push({ event, callback });
+        this.listenners.push({ event, callback, id });
         
         return id;
     }
@@ -241,6 +248,14 @@ export class Galactic {
                 l.callback(...args);
             }
         });
+    }
+
+    /**
+     * Remove a listenner
+     * @param id Identifier listenner
+     */
+    public removeListenner(id: number) {
+        this.listenners = this.listenners.filter((l) => l.id !== id);
     }
     
 }

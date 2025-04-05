@@ -2,6 +2,8 @@ import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import CardButton from "../card-button/card-button";
 import { EyeIcon } from "~/icons/icons";
 import styles from "./card-project.css?inline";
+import Box from "../box/box";
+import { formatViews } from "~/utils/text.util";
 
 interface ICardProjectProps {
     date?: string,
@@ -20,7 +22,7 @@ export default component$<ICardProjectProps>(({ date, title, details, views, hre
             <div class="date">
                 {date}
                 <div class="visits">
-                    <EyeIcon size="md"></EyeIcon> {views}
+                    <EyeIcon size="md"></EyeIcon> <Box pb={2}>{formatViews(views)}</Box>
                 </div>
             </div>
             <div class="content">

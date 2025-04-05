@@ -24,6 +24,14 @@
     color: var(--text-color);
 }
 
+svg {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 body {
     background-color: rgb(13, 14, 16);
     min-height: 100vh;

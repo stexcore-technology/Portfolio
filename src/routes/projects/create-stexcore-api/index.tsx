@@ -5,22 +5,24 @@ import visitsService from "~/services/visits.service";
 
 const useContent = routeLoader$(async (event) => {
     const response = await fetch(new URL("/contents/create-stexcore-api.html", event.url));
-    const data = await response.text();
+    const html = await response.text();
 
-    await visitsService.incrementVisit("create-stexcore-api");
-    
-    return data;
+    const visits = await visitsService.incrementVisit("create-stexcore-api");
+    const views = visits.count_visit;
+
+    return { html, views };
 });
 
 export default component$(() => {
-    // HTML
-    const html = useContent();
+    // HTML and views
+    const info = useContent();
     
     return (
         <Project
             title="create-stexcore-api"
             description="A powerful CLI tool designed to streamline the initialization of API projects in Node.js."
-            html={html.value}
+            html={info.value.html}
+            views={info.value.views}
         ></Project>
     );
 });

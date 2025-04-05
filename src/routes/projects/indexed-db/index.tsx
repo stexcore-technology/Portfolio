@@ -5,22 +5,24 @@ import visitsService from "~/services/visits.service";
 
 const useContent = routeLoader$(async (event) => {
     const response = await fetch(new URL("/contents/indexed-db.html", event.url));
-    const data = await response.text();
+    const html = await response.text();
 
-    await visitsService.incrementVisit("indexed-db");
-    
-    return data;
+    const visits = await visitsService.incrementVisit("indexed-db");
+    const views = visits.count_visit;
+
+    return { html, views };
 });
 
 export default component$(() => {
-    // HTML
-    const html = useContent();
+    // HTML and views
+    const info = useContent();
     
     return (
         <Project
             title="indexed-db"
             description="This JavaScript library simplifies browser data management by layering over IndexedDB for CRUD operations and queries."
-            html={html.value}
+            html={info.value.html}
+            views={info.value.views}
         ></Project>
     );
 });

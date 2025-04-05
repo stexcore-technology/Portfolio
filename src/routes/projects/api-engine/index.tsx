@@ -5,22 +5,24 @@ import visitsService from "~/services/visits.service";
 
 const useContent = routeLoader$(async (event) => {
     const response = await fetch(new URL("/contents/api-engine.html", event.url));
-    const data = await response.text();
+    const html = await response.text();
 
-    await visitsService.incrementVisit("api-engine");
+    const visits = await visitsService.incrementVisit("api-engine");
+    const views = visits.count_visit;
 
-    return data;
+    return { html, views };
 });
 
 export default component$(() => {
-    // HTML
-    const html = useContent();
+    // HTML and Views
+    const info = useContent();
     
     return (
         <Project
             title="api-engine"
             description="Engine for rapidly developing APIs using Express under the hood."
-            html={html.value}
+            html={info.value.html}
+            views={info.value.views}
         ></Project>
     );
 });

@@ -5,22 +5,24 @@ import visitsService from "~/services/visits.service";
 
 const useContent = routeLoader$(async (event) => {
     const response = await fetch(new URL("/contents/http-status.html", event.url));
-    const data = await response.text();
+    const html = await response.text();
 
-    await visitsService.incrementVisit("http-status");
-    
-    return data;
+    const visits = await visitsService.incrementVisit("http-status");
+    const views = visits.count_visit;
+
+    return { html, views };
 });
 
 export default component$(() => {
-    // HTML
-    const html = useContent();
+    // HTML and views
+    const info = useContent();
     
     return (
         <Project
             title="http-status"
             description="A collection of HTTP status codes for general use in any HTTP framework."
-            html={html.value}
+            html={info.value.html}
+            views={info.value.views}
         ></Project>
     );
 });
