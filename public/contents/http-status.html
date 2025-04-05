@@ -1,0 +1,199 @@
+<article>
+    <h1>@stexcore/http-status</h1>
+
+    <p>
+        <img src="https://img.shields.io/npm/v/@stexcore/http-status?style=flat-square" alt="NPM Version">
+        <img src="https://img.shields.io/github/license/stexcore/http-status.svg" alt="License">
+        <img src="https://img.shields.io/badge/TypeScript-%5E5.8.2-blue?style=flat-square" alt="TypeScript">
+    </p>
+
+    <p><strong>A collection of HTTP status codes for general use in any HTTP framework.</strong><br>
+        Simplifies the management of HTTP responses and errors with a clean and easy-to-use interface. Fully compatible
+        with TypeScript and any HTTP framework.</p>
+
+    <hr>
+
+    <h2>🚀 Installation</h2>
+    <p>Install the package from NPM using the following command:</p>
+    <pre><code class="bash">npm install @stexcore/http-status</code></pre>
+
+    <hr>
+
+    <h2>📦 Usage</h2>
+
+    <h3>Basic Import and Example</h3>
+    <pre><code class="typescript">
+import httpStatus from <span class="string">"@stexcore/http-status"</span>;
+
+// Create a successful response (200 OK)
+const response = httpStatus.ok(<span class="string">"Operation successful"</span>, { id: <span class="number">123</span> });
+console.log(response);
+
+// Handle an error (404 Not Found)
+const error = httpStatus.notFound(<span class="string">"The requested resource was not found"</span>);
+console.log(error);
+
+// Validate if an object is an HttpError
+if (httpStatus.isHttpError(error)) {
+    console.error(<span class="string">"This is an HTTP error!"</span>, error.message);
+}
+    </code></pre>
+
+    <hr>
+
+    <h2>🌟 Main Methods</h2>
+
+    <h3>Success Responses (2xx)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Method</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="keyword">ok</code></td>
+                <td>Creates a 200 OK response.</td>
+            </tr>
+            <tr>
+                <td><code class="keyword">created</code></td>
+                <td>Creates a 201 Created response.</td>
+            </tr>
+            <tr>
+                <td><code class="keyword">accepted</code></td>
+                <td>Creates a 202 Accepted response.</td>
+            </tr>
+            <!-- Add remaining methods here -->
+        </tbody>
+    </table>
+
+    <h3>Redirections (3xx)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Method</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="keyword">movedPermanently</code></td>
+                <td>Creates a 301 Moved Permanently response.</td>
+            </tr>
+            <tr>
+                <td><code class="keyword">found</code></td>
+                <td>Creates a 302 Found response.</td>
+            </tr>
+            <!-- Add remaining methods here -->
+        </tbody>
+    </table>
+
+    <h3>Client Errors (4xx)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Method</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="keyword">badRequest</code></td>
+                <td>Creates a 400 Bad Request error.</td>
+            </tr>
+            <tr>
+                <td><code class="keyword">unauthorized</code></td>
+                <td>Creates a 401 Unauthorized error.</td>
+            </tr>
+            <!-- Add remaining methods here -->
+        </tbody>
+    </table>
+
+    <h3>Server Errors (5xx)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Method</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="keyword">internalServerError</code></td>
+                <td>Creates a 500 Internal Server Error.</td>
+            </tr>
+            <tr>
+                <td><code class="keyword">notImplemented</code></td>
+                <td>Creates a 501 Not Implemented error.</td>
+            </tr>
+            <!-- Add remaining methods here -->
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>⚙️ Configuration</h2>
+    <p>This library is ready to use directly out of the box. TypeScript is <strong>optional</strong> and supported:
+        declaration files (<code class="string">.d.ts</code>) are included to enable seamless integration for TypeScript
+        projects. If you're using JavaScript, simply install the library and start using it without additional setup.
+    </p>
+
+    <hr>
+
+    <h2>📖 Technical Details</h2>
+    <p>This package includes key classes for managing HTTP statuses and errors:</p>
+    <ul>
+        <li><strong>HttpStatus</strong>: A base class for representing HTTP responses.</li>
+        <li><strong>HttpError</strong>: Extends <code class="keyword">Error</code> to represent HTTP errors.</li>
+    </ul>
+
+    <hr>
+
+    <h2>💡 Example with Express</h2>
+    <p>Here's a possible use case for integrating this library with <a href="https://expressjs.com/">Express</a>, a
+        widely used Node.js framework:</p>
+    <pre><code class="typescript">
+import express from <span class="string">"express"</span>;
+import httpStatus from <span class="string">"@stexcore/http-status"</span>;
+
+const app = express();
+
+// A sample route to return a successful response
+app.get(<span class="string">"/success"</span>, (req, res) => {
+    res.json(httpStatus.ok(<span class="string">"The operation was successful!"</span>, { data: <span class="string">"Example data"</span> }));
+});
+
+// A route to simulate a server error
+app.get(<span class="string">"/error"</span>, (req, res) => {
+    res.status(<span class="number">500</span>).json(httpStatus.internalServerError(<span class="string">"An unexpected error occurred."</span>, { traceId: <span class="string">"123-abc"</span> }));
+});
+
+// Start the server
+const PORT = <span class="number">3000</span>;
+app.listen(PORT, () => {
+    console.log(<span class="string">`Server is running on http://localhost:${PORT}`</span>);
+});
+    </code></pre>
+
+    <p>In this example:</p>
+    <ul>
+        <li>The <code class="string">/success</code> route demonstrates a typical 200 OK response with additional data.
+        </li>
+        <li>The <code class="string">/error</code> route showcases how you can return a structured 500 Internal Server
+            Error.</li>
+    </ul>
+
+    <hr>
+
+    <h2>🛠️ Development</h2>
+    <p>If you'd like to contribute or report issues, visit our GitHub repository:<br>
+        <a href="https://github.com/stexcore/http-status">https://github.com/stexcore/http-status</a>
+    </p>
+
+    <hr>
+
+    <h2>📝 License</h2>
+    <p>This project is licensed under the <strong>MIT</strong> license. See the <a
+            href="https://github.com/stexcore/http-status/blob/main/LICENSE">LICENSE</a> file for more details.</p>
+</article>

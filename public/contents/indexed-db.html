@@ -1,0 +1,199 @@
+<article>
+    <h2>Description</h2>
+    <p>
+      This project is a JavaScript library designed to provide a database-like structure for managing data in the browser. It serves as a layer on top of the IndexedDB API, allowing users to interact with data in the form of tables and perform common database operations such as CRUD (Create, Read, Update, Delete) and conditional queries.
+    </p>
+    <p>
+      The library is built with strong typing to ensure data integrity and validation, making it a robust solution for client-side data management. By abstracting the complexities of IndexedDB, this library aims to simplify the process of working with structured data in JavaScript applications.
+    </p>
+
+    <h2>Features</h2>
+    <ul>
+      <li><strong>CRUD Operations</strong>: Methods for creating, reading, updating, and deleting records:</li>
+      <ul>
+        <li><code class="keyword">findOne</code></li>
+        <li><code class="keyword">findAll</code></li>
+        <li><code class="keyword">insert</code></li>
+        <li><code class="keyword">update</code></li>
+        <li><code class="keyword">delete</code></li>
+        <li><code class="keyword">count</code></li>
+      </ul>
+      <li><strong>Conditional Queries</strong>: Use <code class="keyword">where</code> to filter records based on specific criteria.</li>
+      <li><strong>Pagination</strong>: Implement <code class="keyword">limit</code> and <code class="keyword">offset</code> for efficient data retrieval.</li>
+      <li><strong>Table Schemas</strong>: Define table structures using JavaScript objects, specifying the fields each table can have.</li>
+      <li><strong>Strong Typing</strong>: Validate data types to minimize runtime errors.</li>
+    </ul>
+
+    <h2>Getting Started</h2>
+
+    <h3>Prerequisites</h3>
+    <p>
+      Make sure you have Node.js installed on your machine. You can download it from <a href="https://nodejs.org/">nodejs.org</a>.
+    </p>
+
+    <h3>Installation</h3>
+    <p>1. Install the package using npm:</p>
+    <pre><code class="bash">npm install @stexcore/indexed-db</code></pre>
+
+    <h3>Usage</h3>
+    <p>Here’s a detailed example of how to use the Data Management Library:</p>
+
+    <h4>1. Creating a Database Instance:</h4>
+    <pre><code>
+      <span class="keyword">import</span> { IndexedDB } <span class="keyword">from</span> <span class="string">'@stexcore/indexed-db'</span>;
+
+      <span class="keyword">const</span> database = <span class="keyword">new</span> IndexedDB(<span class="string">"stexcore"</span>, {
+        users: {
+          id: {
+            type: <span class="string">"number"</span>,
+            primarykey: <span class="keyword">true</span>,
+            autoincrement: <span class="keyword">true</span>
+          },
+          username: {
+            type: <span class="string">"string"</span>,
+            unique: <span class="keyword">true</span>
+          },
+          phone: {
+            type: <span class="string">"string"</span>,
+            allow_null: <span class="keyword">true</span>
+          }
+        }
+      });
+    </code></pre>
+
+    <h4>2. Getting Records:</h4>
+    <h5>Find All Records:</h5>
+    <pre><code>
+      database.getTable(<span class="string">"users"</span>)
+        .<span class="keyword">then</span>((userTable) => {
+          userTable.findAll()
+            .<span class="keyword">then</span>((records) => {
+              console.log(<span class="string">"Searched records:"</span>, records);
+            })
+            .<span class="keyword">catch</span>((err) => {
+              console.error(err);
+            });
+        })
+        .<span class="keyword">catch</span>((err) => {
+          console.error(err);
+        });
+    </code></pre>
+
+    <h4>3. Inserting Records:</h4>
+    <pre><code>
+      database.getTable(<span class="string">"users"</span>)
+        .<span class="keyword">then</span>((user) => {
+          user.insert({
+            username: <span class="string">"stexcore"</span>,
+            phone: <span class="keyword">null</span>
+          })
+            .<span class="keyword">then</span>((records) => {
+              console.log(<span class="string">"Records inserted:"</span>, records);
+            })
+            .<span class="keyword">catch</span>((err) => {
+              console.error(err);
+            });
+        })
+        .<span class="keyword">catch</span>((err) => {
+          console.error(err);
+        });
+    </code></pre>
+
+    <h4>3. Insert Multiple Records:</h4>
+    <pre><code>
+      <span class="comment">// get table</span>
+      database.getTable(<span class="string">"users"</span>)
+        .<span class="keyword">then</span>((user) => {
+
+          <span class="comment">// insert many records into table</span>
+          user.insert([
+            {
+              username: <span class="string">"stexcore"</span>,
+              phone: <span class="keyword">null</span>
+            },
+            {
+              username: <span class="string">"technology"</span>,
+              phone: <span class="string">"+58 412 0000 000"</span>
+            }
+          ])
+            .<span class="keyword">then</span>((records) => {
+              console.log(<span class="string">"Records inserted:"</span>, records);
+            })
+            .<span class="keyword">catch</span>((err) => {
+              console.error(err);
+            });
+        })
+        .<span class="keyword">catch</span>((err) => {
+          console.error(err);
+        });
+    </code></pre>
+
+    <h4>4. Updating Records:</h4>
+    <p>You can update existing records based on specific conditions.</p>
+    <pre><code>
+      <span class="comment">// get table</span>
+      database.getTable(<span class="string">"users"</span>)
+        .<span class="keyword">then</span>((user) => {
+
+          <span class="comment">// update records based on the conditions</span>
+          user.update({
+            phone: <span class="keyword">null</span>
+          }, {
+            where: {
+              username: <span class="string">"stexcore"</span>
+            }
+          })
+            .<span class="keyword">then</span>(({ n_affected }) => {
+              console.log(<span class="string">"Records updated:"</span>, n_affected);
+            })
+            .<span class="keyword">catch</span>((err) => {
+              console.error(err);
+            });
+        })
+        .<span class="keyword">catch</span>((err) => {
+          console.error(err);
+        });
+    </code></pre>
+
+    <h4>5. Deleting Records:</h4>
+    <p>You can delete records that match certain criteria.</p>
+    <pre><code>
+      <span class="comment">// get table</span>
+      database.getTable(<span class="string">"users"</span>)
+        .<span class="keyword">then</span>((user) => {
+
+          <span class="comment">// delete records based on the conditions</span>
+          user.delete({
+            where: {
+              username: <span class="string">"stexcore"</span>
+            }
+          })
+            .<span class="keyword">then</span>(({ n_affected }) => {
+              console.log(<span class="string">"Records deleted:"</span>, n_affected);
+            })
+            .<span class="keyword">catch</span>((err) => {
+              console.error(err);
+            });
+        })
+        .<span class="keyword">catch</span>((err) => {
+          console.error(err);
+        });
+    </code></pre>
+
+    <h3>Note</h3>
+    <p>Make sure to handle errors appropriately in your application to ensure a smooth user experience.</p>
+
+    <h2>Contributing</h2>
+    <p>Contributions are welcome! If you have suggestions for improvements or new features, please open an issue or submit a pull request.</p>
+
+    <h2>License</h2>
+    <p>
+      This project is licensed under the MIT License. See the 
+      <a href="https://github.com/stexcore/indexed-db/blob/main/LICENCE">LICENSE</a> file for details.
+    </p>
+
+    <h2>Acknowledgments</h2>
+    <p>
+      Thank you for checking out this project! Your feedback and contributions are greatly appreciated.
+    </p>
+  </article>

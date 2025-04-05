@@ -1,10 +1,27 @@
+:root {
+    --text-color-secondary: rgb(52, 52, 52);
+    --text-color: rgb(194, 194, 194);
+    --text-color-light: rgb(255, 255, 255);
+}
+
 @font-face {
     font-family: quicksand;
     src: url(/quicksand.ttf);
 }
 
+@keyframes smooth {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 * {
     font-family: quicksand, Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    color: var(--text-color);
 }
 
 body {
@@ -12,13 +29,30 @@ body {
     min-height: 100vh;
     background-image: linear-gradient(
         to top left, 
-        #52525b, 
+        rgba(19, 19, 21, 0.2), 
+        #1f1f23 50%, 
+        rgba(8, 8, 9, 0.2)
+        /* #52525b, 
         rgba(82, 82, 91, 0.2) 50%, 
-        rgba(82, 82, 91, 0.2)
+        rgba(82, 82, 91, 0.2) */
     );
-    height: 100vh;
+    background-attachment: fixed;
+    min-height: 100vh;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.smooth {
+    animation: smooth 1s 2.5s both;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color-light);
+}
+
+p, button, input {
+    color: var(--text-color);
+}
+
+.text-light {
+    color: var(--text-color-light) !important;   
 }

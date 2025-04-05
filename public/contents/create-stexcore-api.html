@@ -1,0 +1,160 @@
+<article>
+    <h1>Create Stexcore API CLI 🚀</h1>
+
+    <p>A powerful CLI tool designed to streamline the initialization of API projects in Node.js. It leverages Express
+        and follows a common, scalable project structure, enabling developers to kick-start their backend setups
+        efficiently.</p>
+
+    <blockquote>
+        <p><strong>Note:</strong> This CLI is currently in its <strong>alpha version (<code
+                    class="string">1.0.0-alpha.1</code>)</strong>, meaning it is in active development. Expect frequent
+            updates and improvements as we work towards a stable release.</p>
+    </blockquote>
+
+    <hr>
+
+    <h2>Features 🌟</h2>
+    <ul>
+        <li>Initialize API projects using <strong>Express</strong>.</li>
+        <li>Choose your preferred development technology (<strong>TypeScript</strong> or <strong>JavaScript</strong>).
+        </li>
+        <li>Optional integration with <strong>Sequelize</strong> for database management.</li>
+        <li>Interactive configuration for database credentials:
+            <ul>
+                <li>Supports SQLite, MySQL, MariaDB, PostgreSQL, MSSQL, and more.</li>
+                <li>Generates <code class="string">.env</code> files dynamically based on user input.</li>
+            </ul>
+        </li>
+        <li>Automatically generates project files and structures for a seamless development experience.</li>
+    </ul>
+
+    <hr>
+
+    <h2>Installation ⚙️</h2>
+    <p>To use the CLI, first install it globally:</p>
+    <pre><code class="bash">npm install -g create-stexcore-api@alpha</code></pre>
+
+    <hr>
+
+    <h2>Usage 💻</h2>
+    <p>Run the CLI with the following command:</p>
+    <pre><code class="bash">create-stexcore-api</code></pre>
+    <p>Follow the interactive prompts to configure your project:</p>
+    <ul>
+        <li><strong>Project name:</strong> Enter the name of your API project.</li>
+        <li><strong>Technology:</strong> Select <strong>JavaScript</strong> or <strong>TypeScript</strong> for your
+            setup.</li>
+        <li><strong>Database management:</strong> Enable Sequelize and configure database credentials.</li>
+    </ul>
+    <p>Once complete, the CLI will:</p>
+    <ol>
+        <li>Generate the project structure.</li>
+        <li>Create and populate your <code class="string">.env</code> file (if using Sequelize).</li>
+        <li>Initialize the required dependencies (optional).</li>
+    </ol>
+
+    <hr>
+
+    <h2>Example 🌱</h2>
+    <pre><code class="bash">create-stexcore-api</code></pre>
+    <ul>
+        <li><strong>Prompt:</strong> Enter the project name:
+            <ul>
+                <li><strong>Input:</strong> <code class="string">my-api-project</code></li>
+            </ul>
+        </li>
+        <li><strong>Prompt:</strong> What technology do you prefer to use for development?
+            <ul>
+                <li><strong>Input:</strong> <code class="string">TypeScript</code></li>
+            </ul>
+        </li>
+        <li><strong>Prompt:</strong> Would you like to include 'Sequelize' to manage a database?
+            <ul>
+                <li><strong>Input:</strong> <code class="string">Yes</code></li>
+            </ul>
+        </li>
+        <li><strong>Prompt:</strong> Select the database type:
+            <ul>
+                <li><strong>Input:</strong> <code class="string">Postgres</code></li>
+            </ul>
+        </li>
+        <li><strong>Prompt:</strong> Please enter the hostname for the database:
+            <ul>
+                <li><strong>Input:</strong> <code class="string">localhost</code></li>
+            </ul>
+        </li>
+        <li><strong>Prompt:</strong> Enter the port number for the database:
+            <ul>
+                <li><strong>Input:</strong> <code class="number">5432</code></li>
+            </ul>
+        </li>
+        <li><strong>Prompt:</strong> Enter the username and password for the database:
+            <ul>
+                <li><strong>Input:</strong> <code class="string">root</code> / <code class="string">password</code></li>
+            </ul>
+        </li>
+    </ul>
+    <p><strong>Result:</strong></p>
+    <ul>
+        <li>Project files generated in the current directory.</li>
+        <li><code class="string">.env</code> file populated with the database configuration.</li>
+    </ul>
+
+    <hr>
+
+    <h2>Development 🛠️</h2>
+    <p>To build the project, use:</p>
+    <pre><code class="bash">npm run build</code></pre>
+    <p>For testing purposes:</p>
+    <pre><code class="bash">npm run test</code></pre>
+
+    <hr>
+
+    <h2>Limitations 🧪</h2>
+    <ul>
+        <li>As an alpha version, certain features are experimental and may change in future releases.</li>
+        <li>Currently, only SQLite and major database types are supported for Sequelize integration.</li>
+    </ul>
+
+    <hr>
+
+    <h2>Roadmap 🗺️</h2>
+    <ul>
+        <li><strong>Beta release (<code class="string">1.0.0-beta.1</code>):</strong>
+            <ul>
+                <li>Stabilization of current features.</li>
+                <li>Addition of unit tests and better error handling.</li>
+                <li>Enhanced project templates with documentation.</li>
+            </ul>
+        </li>
+        <li><strong>Stable release (<code class="string">1.0.0</code>):</strong>
+            <ul>
+                <li>Fully tested features.</li>
+                <li>Expanded support for additional frameworks and configurations.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2>Contributions 🤝</h2>
+    <p>We welcome feedback and contributions from the developer community! To contribute:</p>
+    <ol>
+        <li>Fork the repository.</li>
+        <li>Create a new branch: <code class="bash">git checkout -b feature-name</code>.</li>
+        <li>Submit a pull request.</li>
+    </ol>
+
+    <hr>
+
+    <h2>License 📜</h2>
+    <p>This project is licensed under the <strong>MIT License</strong>.</p>
+
+    <hr>
+
+    <h2>Authors ❤️</h2>
+    <ul>
+        <li><strong>Stexcore:</strong> Passionate about creating tools for developers and simplifying backend setups.
+        </li>
+    </ul>
+</article>

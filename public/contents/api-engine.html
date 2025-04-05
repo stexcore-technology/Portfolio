@@ -1,0 +1,211 @@
+<article>
+    <h1>@stexcore/api-engine</h1>
+
+    <p>
+        <img src="https://img.shields.io/npm/v/@stexcore/api-engine?style=flat-square" alt="NPM Version">
+        <img src="https://img.shields.io/github/license/stexcore/api-engine.svg" alt="License">
+        <img src="https://img.shields.io/badge/TypeScript-%5E5.8.2-blue?style=flat-square" alt="TypeScript">
+    </p>
+
+    <p><strong>Engine for rapidly developing APIs using Express under the hood.</strong><br>
+        This library provides a modular and dynamic way to manage services, controllers, middlewares, and validation
+        schemas, enabling developers to build robust and scalable APIs with ease.</p>
+
+    <hr>
+
+    <h2>🚀 Installation</h2>
+    <p>Install the package from NPM using the following command:</p>
+    <pre><code class="bash">npm install @stexcore/api-engine</code></pre>
+
+    <hr>
+
+    <h2>📦 Features</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Server Initialization</strong></td>
+                <td>Easily create and configure servers with <code class="keyword">createServer</code>.</td>
+            </tr>
+            <tr>
+                <td><strong>Dynamic Loading</strong></td>
+                <td>Automatically load controllers, services, schemas, and middlewares.</td>
+            </tr>
+            <tr>
+                <td><strong>Validation Support</strong></td>
+                <td>Create schemas with <code class="keyword">createSchema</code> for request validation.</td>
+            </tr>
+            <tr>
+                <td><strong>Modular Services</strong></td>
+                <td>Use the <code class="keyword">Service</code> class to define reusable components with lifecycles.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Controller Routing</strong></td>
+                <td>Define HTTP methods with the <code class="keyword">Controller</code> class.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>🧩 Dynamic Endpoint Creation</h2>
+
+    <h3>📂 Controllers</h3>
+    <p>Controllers define the logic for your API's endpoints. To ensure they are loaded dynamically and correctly,
+        follow these rules:</p>
+    <ul>
+        <li><strong>Location:</strong> Controllers must be stored inside the <code class="string">controllers/</code>
+            directory.</li>
+        <li><strong>File Naming:</strong> The file name must end with <code class="string">.controller.ts</code> or
+            <code class="string">.controller.js</code>.
+        </li>
+        <li><strong>Path Structure:</strong> The file name determines the endpoint. For example:
+            <ul>
+                <li><code class="string">auth.controller.ts</code> → <code class="string">/auth</code></li>
+                <li><code class="string">auth.user.controller.ts</code> → <code class="string">/auth/user</code></li>
+            </ul>
+        </li>
+        <li><strong>Dynamic Segments:</strong> To define dynamic segments in the endpoint, enclose the segment in square
+            brackets (<code>[]</code>). For example:
+            <ul>
+                <li><code class="string">auth.user.[id_user].controller.ts</code> → <code
+                        class="string">/auth/user/:id_user</code></li>
+            </ul>
+        </li>
+    </ul>
+
+    <h4>Example:</h4>
+    <pre><code class="typescript">
+import { RequestHandler } from <span class="string">"express"</span>;
+import { Controller, Server } from <span class="string">"@stexcore/api-engine"</span>;
+
+export default class UserController extends Controller {
+    constructor(server: Server) {
+        super(server);
+    }
+
+    public GET?: RequestHandler = (req, res) => {
+        res.json({ message: <span class="string">`User ID: \${req.params.id_user}`</span> });
+    };
+}
+    </code></pre>
+
+    <h3>📂 Schemas</h3>
+    <p>Schemas define validation rules for incoming requests. Their naming follows the same rules as controllers, but
+        the file name must end with <code class="string">.schema.ts</code>.</p>
+
+    <h4>Example:</h4>
+    <pre><code class="typescript">
+import { createSchema } from <span class="string">"@stexcore/api-engine"</span>;
+import Joi from <span class="string">"joi"</span>;
+
+export default createSchema({
+    GET: {
+        query: Joi.object({
+            search: Joi.string().optional(),
+        }),
+    },
+});
+    </code></pre>
+
+    <h3>📂 Middlewares</h3>
+    <p>Middlewares handle cross-cutting concerns (e.g., logging, authentication). To ensure middlewares are loaded
+        correctly:</p>
+    <ul>
+        <li><strong>Location:</strong> Middlewares must be stored inside the <code class="string">middlewares/</code>
+            directory.</li>
+        <li><strong>File Naming:</strong> The file name must end with <code class="string">.middleware.ts</code> or
+            <code class="string">.middleware.js</code>.
+        </li>
+        <li><strong>Subpaths:</strong> To associate middlewares with specific paths, use folder structures. Middlewares
+            will apply to the base path they are defined under and all its subpaths. For example:
+            <ul>
+                <li>Middleware in <code class="string">middlewares/auth/log.middleware.ts</code> will apply to <code
+                        class="string">/auth</code>, <code class="string">/auth/user</code>, <code
+                        class="string">/auth/user/:id_user</code>, etc.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h4>Example:</h4>
+    <pre><code class="typescript">
+import { RequestHandler } from <span class="string">"express"</span>;
+
+const logMiddleware: RequestHandler = (req, res, next) => {
+    console.log(<span class="string">`Request to \${req.path}`</span>);
+    next();
+};
+
+export default logMiddleware;
+    </code></pre>
+
+    <!-- Sección de Services -->
+    <h3>📂 Services</h3>
+    <p>Services encapsulate reusable business logic. They must follow these rules:</p>
+    <ul>
+        <li><strong>Location:</strong> Services must be stored inside the <code class="string">services/</code>
+            directory.</li>
+        <li><strong>File Naming:</strong> The file name must end with <code class="string">.service.ts</code>.</li>
+    </ul>
+    <p>To use a service, call <code class="keyword">server.getService()</code> with the service's constructor.</p>
+
+    <h4>Example:</h4>
+    <pre><code class="typescript">
+import { Service } from <span class="string">"@stexcore/api-engine"</span>;
+
+export default class AuthService extends Service {
+public authenticateUser(token: string) {
+    <span class="comment">// Authentication logic</span>
+    return token === <span class="string">"valid_token"</span>;
+}
+}
+</code></pre>
+
+    <hr>
+
+    <!-- Ejemplo completo -->
+    <h2>🌐 Full Example: Building an API</h2>
+    <h3>Project Structure</h3>
+    <pre><code class="bash">
+src/
+├── controllers/
+│   ├── auth.user.[id_user].controller.ts
+├── middlewares/
+│   ├── auth/user/log.middleware.ts
+├── schemas/
+│   ├── auth.user.schema.ts
+├── services/
+│   ├── auth.service.ts
+├── index.ts
+</code></pre>
+
+    <h4>Entry Point</h4>
+    <pre><code class="typescript">
+import { createServer } from <span class="string">"@stexcore/api-engine"</span>;
+
+const server = createServer({ port: 9001, workdir: __dirname });
+server.initialize();
+</code></pre>
+
+    <hr>
+
+    <!-- Desarrollo -->
+    <h2>🛠️ Development</h2>
+    <p>If you'd like to contribute or report issues, visit our GitHub repository:<br>
+        <a href="https://github.com/stexcore/api-engine">https://github.com/stexcore/api-engine</a>
+    </p>
+
+    <hr>
+
+    <!-- Licencia -->
+    <h2>📝 License</h2>
+    <p>This project is licensed under the <strong>MIT</strong> license. See the <a
+            href="https://github.com/stexcore/api-engine/blob/main/LICENSE">LICENSE</a> file for more details.</p>
+    </div>
+</article>

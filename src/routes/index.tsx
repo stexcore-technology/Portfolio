@@ -1,21 +1,28 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
+import { component$ } from "@builder.io/qwik";
+import { Link, type DocumentHead } from "@builder.io/qwik-city";
 import GalaticSpace from "~/components/galatic-space/galatic-space";
 import Present from "~/components/present/present";
-import styles from "./index.css?inline"
+import styles from "./index.module.css";
 
 export default component$(() => {
-  // Load styles
-  useStylesScoped$(styles);
   
   return (
-    <div class="home">
-      <GalaticSpace>
-        <div class="home-content">
+    <main class={styles["home"]}>
+      <GalaticSpace class="smooth">
+        <div class={styles["home-content"]}>
+          <nav class={[styles["nav"], "smooth"]}>
+            <ul>
+              <li><Link class={styles["link-nav"]} href="/projects">Projects</Link></li>
+              <li><Link class={styles["link-nav"]} href="/contact">Contact</Link></li>
+            </ul>
+          </nav>
           <Present></Present>
+          <p class={[styles["typegraphy"], "smooth"]}>
+            My goal when developing is not to have excessive dependencies.
+          </p>
         </div>
       </GalaticSpace>
-    </div>
+    </main>
   );
 });
 

@@ -1,0 +1,78 @@
+.icon {
+    border: 1px solid var(--text-color);
+    padding: 10px 12px;
+    margin-top: 40px;
+    padding-bottom: 8px;
+    border-radius: 30px;
+    transition: 0.5s;
+}
+
+.icon-line {
+    height: 250px;
+    width: 1px;
+    background-image: linear-gradient(var(--text-color), var(--text-color-secondary), transparent);
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.5s;
+}
+
+.contact {
+    margin-top: 60px;
+    font-weight: bold;
+    text-wrap: nowrap;
+    font-size: large;
+    transition: 0.5s;
+}
+
+.platform {
+    margin-top: 10px;
+    text-wrap: nowrap;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+.information {
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 900px) {
+    .icon-line {
+        height: 100px;
+    }
+
+    .icon {
+        margin-top: 0px;
+    }
+
+    .contact {
+        margin-top: 20px;
+    }
+
+    .platform {
+        margin-top: 20px;
+    }
+
+    .information {
+        min-width: 150px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .contact {
+        margin-top: 15px;
+    }
+
+    .platform {
+        margin-top: 10px;
+    }
+
+    .icon-line {
+        height: 80px;
+    }
+}

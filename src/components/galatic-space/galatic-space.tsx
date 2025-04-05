@@ -2,10 +2,14 @@ import { $, component$, NoSerialize, noSerialize, Slot, useOnWindow, useSignal, 
 import styles from "./galatic-space.css?inline";
 import { Galactic } from "./galatic.class";
 
+interface IGalacticSpaceProps {
+    class?: string
+};
+
 /**
  * export component
  */
-export default component$(() => {
+export default component$<IGalacticSpaceProps>((props) => {
     // Load styles
     useStylesScoped$(styles);
 
@@ -52,10 +56,10 @@ export default component$(() => {
                     const ctx = canvas.value.getContext("2d");
 
                     if(ctx) {
-                        // Limpiar el canvas
+                        // Clean star
                         ctx.clearRect(0, 0, canvas.value!.width, canvas.value!.height);
         
-                        // Dibujar cada estrella
+                        // Draw star
                         for (const star of stars) {
                             galactic.value.drawStar(ctx, star);
                         }
@@ -84,7 +88,7 @@ export default component$(() => {
 
         // Validate previous time
         if(timeMouse.value) {
-            const timeDistance = currentTime - timeMouse.value;
+            const timeDistance = Math.min(currentTime - timeMouse.value, 1000);
             
             // Calculate delta speed
             const delta_x = ev.movementX / rect.width * timeDistance * 6;
@@ -102,7 +106,7 @@ export default component$(() => {
     return (
         <div ref={galacticSpaceRef} class="galatic-space">
             {!!(rect.width && rect.height) && (
-                <canvas key={`canvas_${rect.width}_${rect.height}`} ref={canvas} width={rect.width} height={rect.height}></canvas>
+                <canvas key={`canvas_${rect.width}_${rect.height}`} class={props.class} ref={canvas} width={rect.width} height={rect.height}></canvas>
             )}
             <div class="container">
                 <Slot></Slot>
