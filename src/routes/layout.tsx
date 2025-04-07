@@ -1,7 +1,25 @@
 import { component$, Slot } from "@builder.io/qwik";
+import { ILangType } from "~/types/lang";
 import type { RequestHandler } from "@builder.io/qwik-city";
+import langService from "~/services/lang.service";
+
+const languages: ILangType[] = ["es", "en"];
+
+export const onRequest: RequestHandler = async ({ request, redirect, url, params }) => {
+
+  // Validate current lang  
+  if(!languages.includes(String(params.lang) as ILangType)) {
+    // Accept language
+    const acceptLanguage = request.headers.get("accept-language");
+    // preferred
+    const lang = langService.getPreferredLanguage(acceptLanguage || "");
+    
+    throw redirect(302, `/${lang}${url.pathname}`);
+  }
+};
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
+  
   // Control caching for this request for best performance and to reduce hosting costs:
   // https://qwik.dev/docs/caching/
   cacheControl({
