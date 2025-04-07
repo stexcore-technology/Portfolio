@@ -29,6 +29,9 @@ const lang: ILang = {
     },
     "navbar:home": {
         navbar: {
+            back: {
+                tooltip: "Go to back"
+            },
             contact: {
                 label: "Contact",
                 tooltip: "Contact me"
@@ -40,3 +43,5 @@ const lang: ILang = {
         }
     }
 }
+
+export default lang;

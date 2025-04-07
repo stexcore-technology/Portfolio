@@ -7,6 +7,7 @@ interface ICardContact {
     contact: string,
     platform: string,
     href?: string,
+    title?: string,
     target?: HTMLAttributeAnchorTarget
 }
 
@@ -15,7 +16,7 @@ export default component$<ICardContact>((props) => {
     useStylesScoped$(styles);
 
     return (
-        <CardButton href={props.href} target={props.target}>
+        <CardButton href={props.href} target={props.target} title={props.title}>
             <div class="information">
                 <div class="icon text-light">
                     { props.icon }

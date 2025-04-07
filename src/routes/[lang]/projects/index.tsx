@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
+import { component$, Slot, useStylesScoped$ } from "@builder.io/qwik";
 import IconButton from "~/components/icon-button/icon-button";
 import CardProject from "~/components/card-project/card-project";
 import Navbar, { NavItem } from "~/components/navbar/navbar";
@@ -10,6 +10,8 @@ import Header from "~/components/header/header";
 import Box from "~/components/box/box";
 import styles from "./index.css?inline";
 import visitsService from "~/services/visits.service";
+import LangProvider from "~/providers/lang.provider";
+import useLang from "~/hooks/useLang";
 
 const useVisits = routeLoader$(async () => {
     const [
@@ -32,7 +34,8 @@ const useVisits = routeLoader$(async () => {
     };
 });
 
-export default component$(() => {
+const PageComponent = component$(() => {
+    const lang = useLang(["navbar:home", "projects"]);
     // Load styles
     useStylesScoped$(styles);
     // Visits
@@ -40,19 +43,25 @@ export default component$(() => {
     // Load navigate
     const navigate = useNavigate();
 
+    console.log("LAYOUT", lang);
+
     return (
         <>
             <Navbar>
-                <IconButton q:slot="start" onClick$={() => navigate("..")}>
+                <IconButton q:slot="start" onClick$={() => navigate("..")} title={lang["navbar:home"]?.navbar.back.tooltip}>
                     <BackIcon></BackIcon>
                 </IconButton>
-                <NavItem href="/projects">Projects</NavItem>
-                <NavItem href="/contact">Contact</NavItem>
+                <NavItem href="/projects" title={lang["navbar:home"]?.navbar.projects.tooltip}>
+                    {lang["navbar:home"]?.navbar.projects.label}
+                </NavItem>
+                <NavItem href="/contact" title={lang["navbar:home"]?.navbar.contact.tooltip}>
+                    {lang["navbar:home"]?.navbar.contact.label}
+                </NavItem>
             </Navbar>
             <MainContent>
                 <Header
-                    title="Projects"
-                    description="Some of the projects are from work and some are on my own time."
+                    title={lang.projects?.header.title || ""}
+                    description={lang.projects?.header.description || ""}
                 ></Header>
                 <Divider></Divider>
                 <Box py={40}>
@@ -90,6 +99,14 @@ export default component$(() => {
             </MainContent>
         </>
     )
+});
+
+export default component$(() => {
+    return (
+        <LangProvider segments={["navbar:home", "projects"]}>
+            <PageComponent></PageComponent>
+        </LangProvider>
+    );
 });
 
 export const head: DocumentHead = {

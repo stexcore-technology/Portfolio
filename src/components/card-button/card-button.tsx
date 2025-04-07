@@ -4,10 +4,11 @@ import { Link } from "@builder.io/qwik-city";
 
 interface ICardButton {
     href?: string,
-    target?: HTMLAttributeAnchorTarget
+    target?: HTMLAttributeAnchorTarget,
+    title?: string
 }
 
-export default component$<ICardButton>(({ href, target }) => {
+export default component$<ICardButton>(({ href, target, title }) => {
     // Load styles
     useStylesScoped$(styles);
 
@@ -49,7 +50,7 @@ export default component$<ICardButton>(({ href, target }) => {
     });
 
     return (
-        <Link href={href} target={target}>
+        <Link href={href} target={target} title={title}>
             <button class="card" onMouseMove$={handleMouseMove}>
                 <div class="circle" style={{ top: `${coors.y}px`, left: `${coors.x}px` }}></div>
                 <div class="content">

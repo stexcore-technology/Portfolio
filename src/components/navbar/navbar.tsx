@@ -10,8 +10,8 @@ interface INavItem {
 
 export const NavItem = component$<INavItem>(({ href, title, disabled }) => {
     return (
-        <li title={title}>
-            <Link class={[styles["nav-item"], { [styles["disabled"]]: disabled }]} href={href}>
+        <li>
+            <Link class={[styles["nav-item"], { [styles["disabled"]]: disabled }]} href={href} title={title}>
                 <Slot></Slot>
             </Link>
         </li>

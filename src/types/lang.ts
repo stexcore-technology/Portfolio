@@ -1,5 +1,8 @@
 export interface ILangNavbar_Home {
     navbar: {
+        back: {
+            tooltip: string
+        }
         projects: {
             label: string,
             tooltip: string

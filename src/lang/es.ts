@@ -29,6 +29,9 @@ const lang: ILang = {
     },
     "navbar:home": {
         navbar: {
+            back: {
+                tooltip: "Regresar"
+            },
             contact: {
                 label: "Contacto",
                 tooltip: "Contáctame"

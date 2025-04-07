@@ -1,6 +1,6 @@
 import { ILang, ILangType } from "~/types/lang";
 import lang_en from "../lang/en";
-import lang_es from "../lang/en";
+import lang_es from "../lang/es";
 
 export default new class LangService {
 
@@ -33,7 +33,7 @@ export default new class LangService {
     public getLang<T extends keyof ILang>(lang_type: ILangType, segment: T): ILang[T] {
         // Get lang information
         const lang = this.getLangInfo(lang_type);
-
+        
         // Get lang
         return lang[segment];
     }

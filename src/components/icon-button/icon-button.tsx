@@ -2,6 +2,7 @@ import { component$, QRL, Slot, useStylesScoped$ } from "@builder.io/qwik";
 import styles from "./icon-button.css?inline";
 
 interface IIconButtonProps {
+    title?: string
     onClick$?: QRL<(ev: MouseEvent, currentTarget: HTMLButtonElement) => void>
 }
 
