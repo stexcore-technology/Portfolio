@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "description": "StexCore Portfolio A Qwik-powered portfolio showcasing all my projects, highlighting expertise and creativity in development.",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "engines": {
     "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
   },
