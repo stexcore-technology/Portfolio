@@ -1,0 +1,170 @@
+<article>
+    <h1>@stexcore/http-status</h1>
+
+    <p> <img src="https://img.shields.io/npm/v/@stexcore/http-status?style=flat-square" alt="Versión de NPM"> <img
+            src="https://img.shields.io/github/license/stexcore/http-status.svg" alt="Licencia"> <img
+            src="https://img.shields.io/badge/TypeScript-%5E5.8.2-blue?style=flat-square" alt="TypeScript"> </p>
+
+    <p><strong>Una colección de códigos de estado HTTP para uso general en cualquier framework HTTP.</strong><br>
+        Simplifica la gestión de respuestas HTTP y errores con una interfaz limpia y fácil de usar. Totalmente
+        compatible con TypeScript y cualquier framework HTTP.</p>
+
+    <hr>
+
+    <h2>🚀 Instalación</h2>
+    <p>Instala el paquete desde NPM utilizando el siguiente comando:</p>
+    <pre><code class="bash">npm install @stexcore/http-status</code></pre>
+
+    <hr>
+
+    <h2>📦 Uso</h2>
+
+    <h3>Importación Básica y Ejemplo</h3>
+    <pre><code class="typescript"> import httpStatus from "@stexcore/http-status";
+
+// Crear una respuesta exitosa (200 OK) const response = httpStatus.ok("Operación exitosa", { id: 123 }); console.log(response);
+
+// Manejar un error (404 No Encontrado) const error = httpStatus.notFound("El recurso solicitado no fue encontrado"); console.log(error);
+
+// Validar si un objeto es un HttpError if (httpStatus.isHttpError(error)) { console.error("¡Esto es un error HTTP!", error.message); } </code></pre>
+
+    <hr>
+
+    <h2>🌟 Métodos Principales</h2>
+
+    <h3>Respuestas de Éxito (2xx)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Método</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="keyword">ok</code></td>
+                <td>Crea una respuesta 200 OK.</td>
+            </tr>
+            <tr>
+                <td><code class="keyword">created</code></td>
+                <td>Crea una respuesta 201 Created.</td>
+            </tr>
+            <tr>
+                <td><code class="keyword">accepted</code></td>
+                <td>Crea una respuesta 202 Accepted.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Redirecciones (3xx)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Método</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="keyword">movedPermanently</code></td>
+                <td>Crea una respuesta 301 Moved Permanently.</td>
+            </tr>
+            <tr>
+                <td><code class="keyword">found</code></td>
+                <td>Crea una respuesta 302 Found.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Errores del Cliente (4xx)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Método</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="keyword">badRequest</code></td>
+                <td>Crea un error 400 Bad Request.</td>
+            </tr>
+            <tr>
+                <td><code class="keyword">unauthorized</code></td>
+                <td>Crea un error 401 Unauthorized.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Errores del Servidor (5xx)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Método</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="keyword">internalServerError</code></td>
+                <td>Crea un error 500 Internal Server Error.</td>
+            </tr>
+            <tr>
+                <td><code class="keyword">notImplemented</code></td>
+                <td>Crea un error 501 Not Implemented.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>⚙️ Configuración</h2>
+    <p>Esta biblioteca está lista para usar directamente. TypeScript es <strong>opcional</strong> y está soportado: los
+        archivos de declaración (<code class="string">.d.ts</code>) están incluidos para facilitar la integración en
+        proyectos TypeScript. Si estás usando JavaScript, simplemente instala la biblioteca y comienza a usarla sin
+        configuraciones adicionales.</p>
+
+    <hr>
+
+    <h2>📖 Detalles Técnicos</h2>
+    <p>Este paquete incluye clases clave para gestionar estados HTTP y errores:</p>
+    <ul>
+        <li><strong>HttpStatus</strong>: Una clase base para representar respuestas HTTP.</li>
+        <li><strong>HttpError</strong>: Extiende <code class="keyword">Error</code> para representar errores HTTP.</li>
+    </ul>
+
+    <hr>
+
+    <h2>💡 Ejemplo con Express</h2>
+    <p>Aquí tienes un posible caso de uso para integrar esta biblioteca con <a
+            href="https://expressjs.com/">Express</a>, un framework muy utilizado en Node.js:</p>
+    <pre><code class="typescript"> import express from "express"; import httpStatus from "@stexcore/http-status";
+
+const app = express();
+
+// Una ruta de ejemplo para devolver una respuesta exitosa app.get("/success", (req, res) => { res.json(httpStatus.ok("¡La operación fue exitosa!", { data: "Ejemplo de datos" })); });
+
+// Una ruta para simular un error de servidor app.get("/error", (req, res) => { res.status(500).json(httpStatus.internalServerError("Ocurrió un error inesperado.", { traceId: "123-abc" })); });
+
+// Iniciar el servidor const PORT = 3000; app.listen(PORT, () => { console.log(El servidor está corriendo en http://localhost:${PORT}); }); </code></pre>
+
+    <p>En este ejemplo:</p>
+    <ul>
+        <li>La ruta <code class="string">/success</code> demuestra una respuesta típica 200 OK con datos adicionales.
+        </li>
+        <li>La ruta <code class="string">/error</code> muestra cómo puedes devolver un error estructurado 500 Internal
+            Server Error.</li>
+    </ul>
+
+    <hr>
+
+    <h2>🛠️ Desarrollo</h2>
+    <p>Si deseas contribuir o reportar problemas, visita nuestro repositorio en GitHub:<br> <a
+            href="https://github.com/stexcore/http-status">https://github.com/stexcore/http-status</a> </p>
+
+    <hr>
+
+    <h2>📝 Licencia</h2>
+    <p>Este proyecto está licenciado bajo la <strong>MIT</strong>. Consulta el archivo <a
+            href="https://github.com/stexcore/http-status/blob/main/LICENSE">LICENSE</a> para más detalles.</p>
+</article>

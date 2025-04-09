@@ -1,0 +1,156 @@
+<article>
+    <h1>Crear Stexcore API CLI 🚀</h1>
+
+    <p>Una potente herramienta CLI diseñada para simplificar la inicialización de proyectos de API en Node.js..
+        Aprovecha Express y sigue una estructura de proyecto común y escalable, permitiendo a los desarrolladores
+        iniciar rápidamente sus configuraciones de backend de manera eficiente.</p>
+
+    <blockquote>
+        <p><strong>Nota:</strong> Este CLI está actualmente en su <strong>versión alfa (<code
+                    class="string">1.0.0-alpha.1</code>)</strong>, lo que significa que está en desarrollo activo. Se
+            esperan actualizaciones y mejoras frecuentes mientras trabajamos hacia una versión estable.</p>
+    </blockquote>
+
+    <hr>
+
+    <h2>Características 🌟</h2>
+    <ul>
+        <li>Inicializa proyectos de API utilizando <strong>Express</strong>.</li>
+        <li>Elige tu tecnología preferida de desarrollo (<strong>TypeScript</strong> o <strong>JavaScript</strong>).
+        </li>
+        <li>Integración opcional con <strong>Sequelize</strong> para la gestión de bases de datos.</li>
+        <li>Configuración interactiva para credenciales de base de datos: <ul>
+                <li>Soporta SQLite, MySQL, MariaDB, PostgreSQL, MSSQL y más.</li>
+                <li>Genera archivos <code class="string">.env</code> dinámicamente según las entradas del usuario.</li>
+            </ul>
+        </li>
+        <li>Genera automáticamente archivos y estructuras de proyecto para una experiencia de desarrollo fluida.</li>
+    </ul>
+
+    <hr>
+
+    <h2>Instalación ⚙️</h2>
+    <p>Para usar el CLI, primero instálalo de manera global:</p>
+    <pre><code class="bash">npm install -g create-stexcore-api@alpha</code></pre>
+
+    <hr>
+
+    <h2>Uso 💻</h2>
+    <p>Ejecuta el CLI con el siguiente comando:</p>
+    <pre><code class="bash">create-stexcore-api</code></pre>
+    <p>Sigue las indicaciones interactivas para configurar tu proyecto:</p>
+    <ul>
+        <li><strong>Nombre del proyecto:</strong> Introduce el nombre de tu proyecto API.</li>
+        <li><strong>Tecnología:</strong> Selecciona <strong>JavaScript</strong> o <strong>TypeScript</strong> para tu
+            configuración.</li>
+        <li><strong>Gestión de base de datos:</strong> Habilita Sequelize y configura las credenciales de base de datos.
+        </li>
+    </ul>
+    <p>Una vez completado, el CLI:</p>
+    <ol>
+        <li>Generará la estructura del proyecto.</li>
+        <li>Creará y rellenará tu archivo <code class="string">.env</code> (si usas Sequelize).</li>
+        <li>Inicializará las dependencias requeridas (opcional).</li>
+    </ol>
+
+    <hr>
+
+    <h2>Ejemplo 🌱</h2>
+    <pre><code class="bash">create-stexcore-api</code></pre>
+    <ul>
+        <li><strong>Indicador:</strong> Introduce el nombre del proyecto: <ul>
+                <li><strong>Entrada:</strong> <code class="string">my-api-project</code></li>
+            </ul>
+        </li>
+        <li><strong>Indicador:</strong> ¿Qué tecnología prefieres usar para el desarrollo? <ul>
+                <li><strong>Entrada:</strong> <code class="string">TypeScript</code></li>
+            </ul>
+        </li>
+        <li><strong>Indicador:</strong> ¿Te gustaría incluir 'Sequelize' para gestionar una base de datos? <ul>
+                <li><strong>Entrada:</strong> <code class="string">Sí</code></li>
+            </ul>
+        </li>
+        <li><strong>Indicador:</strong> Selecciona el tipo de base de datos: <ul>
+                <li><strong>Entrada:</strong> <code class="string">Postgres</code></li>
+            </ul>
+        </li>
+        <li><strong>Indicador:</strong> Por favor, introduce el hostname de la base de datos: <ul>
+                <li><strong>Entrada:</strong> <code class="string">localhost</code></li>
+            </ul>
+        </li>
+        <li><strong>Indicador:</strong> Introduce el número de puerto para la base de datos: <ul>
+                <li><strong>Entrada:</strong> <code class="number">5432</code></li>
+            </ul>
+        </li>
+        <li><strong>Indicador:</strong> Introduce el nombre de usuario y la contraseña para la base de datos: <ul>
+                <li><strong>Entrada:</strong> <code class="string">root</code> / <code class="string">password</code>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <p><strong>Resultado:</strong></p>
+    <ul>
+        <li>Archivos del proyecto generados en el directorio actual.</li>
+        <li>Archivo <code class="string">.env</code> lleno con la configuración de la base de datos.</li>
+    </ul>
+
+    <hr>
+
+    <h2>Desarrollo 🛠️</h2>
+    <p>Para construir el proyecto, utiliza:</p>
+    <pre><code class="bash">npm run build</code></pre>
+    <p>Para propósitos de prueba:</p>
+    <pre><code class="bash">npm run test</code></pre>
+
+    <hr>
+
+    <h2>Limitaciones 🧪</h2>
+    <ul>
+        <li>Al ser una versión alfa, algunas características son experimentales y podrían cambiar en futuras versiones.
+        </li>
+        <li>Actualmente, solo se admiten SQLite y los principales tipos de base de datos para la integración con
+            Sequelize.</li>
+    </ul>
+
+    <hr>
+
+    <h2>Hoja de Ruta 🗺️</h2>
+    <ul>
+        <li><strong>Versión Beta (<code class="string">1.0.0-beta.1</code>):</strong>
+            <ul>
+                <li>Estabilización de las características actuales.</li>
+                <li>Adición de pruebas unitarias y mejor manejo de errores.</li>
+                <li>Plantillas de proyecto mejoradas con documentación.</li>
+            </ul>
+        </li>
+        <li><strong>Versión Estable (<code class="string">1.0.0</code>):</strong>
+            <ul>
+                <li>Características completamente probadas.</li>
+                <li>Soporte ampliado para frameworks adicionales y configuraciones.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2>Contribuciones 🤝</h2>
+    <p>Damos la bienvenida a comentarios y contribuciones de la comunidad de desarrolladores. Para contribuir:</p>
+    <ol>
+        <li>Haz un fork del repositorio.</li>
+        <li>Crea una nueva rama: <code class="bash">git checkout -b feature-name</code>.</li>
+        <li>Envía un pull request.</li>
+    </ol>
+
+    <hr>
+
+    <h2>Licencia 📜</h2>
+    <p>Este proyecto está licenciado bajo la <strong>Licencia MIT</strong>.</p>
+
+    <hr>
+
+    <h2>Autores ❤️</h2>
+    <ul>
+        <li><strong>Stexcore:</strong> Apasionados por crear herramientas para desarrolladores y simplificar
+            configuraciones de backend.</li>
+    </ul>
+</article>

@@ -1,0 +1,155 @@
+<article>
+    <h1>@stexcore/api-engine</h1>
+
+    <p> <img src="https://img.shields.io/npm/v/@stexcore/api-engine?style=flat-square" alt="Versión de NPM"> <img
+            src="https://img.shields.io/github/license/stexcore/api-engine.svg" alt="Licencia"> <img
+            src="https://img.shields.io/badge/TypeScript-%5E5.8.2-blue?style=flat-square" alt="TypeScript"> </p>
+
+    <p><strong>Motor para desarrollar APIs rápidamente utilizando Express como base.</strong><br> Esta biblioteca
+        proporciona una forma modular y dinámica de gestionar servicios, controladores, middlewares y esquemas de
+        validación, permitiendo a los desarrolladores crear APIs sólidas y escalables con facilidad.</p>
+
+    <hr>
+
+    <h2>🚀 Instalación</h2>
+    <p>Instala el paquete desde NPM utilizando el siguiente comando:</p>
+    <pre><code class="bash">npm install @stexcore/api-engine</code></pre>
+
+    <hr>
+
+    <h2>📦 Funcionalidades</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Funcionalidad</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Inicialización del Servidor</strong></td>
+                <td>Crea y configura servidores fácilmente con <code class="keyword">createServer</code>.</td>
+            </tr>
+            <tr>
+                <td><strong>Carga Dinámica</strong></td>
+                <td>Carga automáticamente controladores, servicios, esquemas y middlewares.</td>
+            </tr>
+            <tr>
+                <td><strong>Soporte de Validación</strong></td>
+                <td>Crea esquemas con <code class="keyword">createSchema</code> para validar solicitudes.</td>
+            </tr>
+            <tr>
+                <td><strong>Servicios Modulares</strong></td>
+                <td>Usa la clase <code class="keyword">Service</code> para definir componentes reutilizables con ciclos
+                    de vida.</td>
+            </tr>
+            <tr>
+                <td><strong>Ruteo de Controladores</strong></td>
+                <td>Define métodos HTTP con la clase <code class="keyword">Controller</code>.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>🧩 Creación Dinámica de Endpoints</h2>
+
+    <h3>📂 Controladores</h3>
+    <p>Los controladores definen la lógica de los endpoints de tu API. Para asegurarte de que se carguen de manera
+        dinámica y correcta, sigue estas reglas:</p>
+    <ul>
+        <li><strong>Ubicación:</strong> Los controladores deben almacenarse dentro del directorio <code
+                class="string">controllers/</code>.</li>
+        <li><strong>Nombre del Archivo:</strong> El nombre del archivo debe terminar con <code
+                class="string">.controller.ts</code> o <code class="string">.controller.js</code>.</li>
+        <li><strong>Estructura del Path:</strong> El nombre del archivo determina el endpoint. Por ejemplo: <ul>
+                <li><code class="string">auth.controller.ts</code> → <code class="string">/auth</code></li>
+                <li><code class="string">auth.user.controller.ts</code> → <code class="string">/auth/user</code></li>
+            </ul>
+        </li>
+        <li><strong>Segmentos Dinámicos:</strong> Para definir segmentos dinámicos en el endpoint, encierra el segmento
+            entre corchetes (<code>[]</code>). Por ejemplo: <ul>
+                <li><code class="string">auth.user.[id_user].controller.ts</code> → <code
+                        class="string">/auth/user/:id_user</code></li>
+            </ul>
+        </li>
+    </ul>
+
+    <h4>Ejemplo:</h4>
+    <pre><code class="typescript"> import { RequestHandler } from "express"; import { Controller, Server } from "@stexcore/api-engine";
+
+export default class UserController extends Controller { constructor(server: Server) { super(server); }
+
+public GET?: RequestHandler = (req, res) => { res.json({ mensaje: ID del Usuario: ${req.params.id_user} }); }; } </code></pre>
+
+    <h3>📂 Esquemas</h3>
+    <p>Los esquemas definen las reglas de validación para las solicitudes entrantes. Su nomenclatura sigue las mismas
+        reglas que los controladores, pero el nombre del archivo debe terminar con <code
+            class="string">.schema.ts</code>.</p>
+
+    <h4>Ejemplo:</h4>
+    <pre><code class="typescript"> import { createSchema } from "@stexcore/api-engine"; import Joi from "joi";
+
+export default createSchema({ GET: { query: Joi.object({ search: Joi.string().optional(), }), }, }); </code></pre>
+
+    <h3>📂 Middlewares</h3>
+    <p>Los middlewares manejan preocupaciones transversales (por ejemplo, registro, autenticación). Para asegurarte de
+        que los middlewares se carguen correctamente:</p>
+    <ul>
+        <li><strong>Ubicación:</strong> Los middlewares deben almacenarse dentro del directorio <code
+                class="string">middlewares/</code>.</li>
+        <li><strong>Nombre del Archivo:</strong> El nombre del archivo debe terminar con <code
+                class="string">.middleware.ts</code> o <code class="string">.middleware.js</code>.</li>
+        <li><strong>Subrutas:</strong> Para asociar middlewares con rutas específicas, utiliza estructuras de carpetas.
+            Los middlewares se aplicarán a la ruta base en la que están definidos y a todas sus subrutas. Por ejemplo:
+            <ul>
+                <li>Middleware en <code class="string">middlewares/auth/log.middleware.ts</code> se aplicará a <code
+                        class="string">/auth</code>, <code class="string">/auth/user</code>, <code
+                        class="string">/auth/user/:id_user</code>, etc.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h4>Ejemplo:</h4>
+    <pre><code class="typescript"> import { RequestHandler } from "express";
+
+const logMiddleware: RequestHandler = (req, res, next) => { console.log(Solicitud a ${req.path}); next(); };
+
+export default logMiddleware; </code></pre>
+
+    <!-- Sección de Services -->
+    <h3>📂 Servicios</h3>
+    <p>Los servicios encapsulan la lógica empresarial reutilizable. Deben seguir estas reglas:</p>
+    <ul>
+        <li><strong>Ubicación:</strong> Los servicios deben almacenarse dentro del directorio <code
+                class="string">services/</code>.</li>
+        <li><strong>Nombre del Archivo:</strong> El nombre del archivo debe terminar con <code
+                class="string">.service.ts</code>.</li>
+    </ul>
+    <p>Para usar un servicio, llama a <code class="keyword">server.getService()</code> con el constructor del servicio.
+    </p>
+
+    <h4>Ejemplo:</h4>
+    <pre><code class="typescript"> import { Service } from "@stexcore/api-engine";
+
+export default class AuthService extends Service { public authenticateUser(token: string) { // Lógica de autenticación return token === "valid_token"; } } </code></pre>
+
+    <hr>
+
+    <h2>🌐 Ejemplo Completo: Construyendo una API</h2>
+    <h3>Estructura del Proyecto</h3>
+    <pre><code class="bash"> src/ ├── controllers/ │ ├── auth.user.[id_user].controller.ts ├── middlewares/ │ ├── auth/user/log.middleware.ts ├── schemas/ │ ├── auth.user.schema.ts ├── services/ │ ├── auth.service.ts ├── index.ts </code></pre>
+
+    <h4>Punto de Entrada</h4>
+    <pre><code class="typescript"> import { createServer } from "@stexcore/api-engine";
+
+const server = createServer({ port: 9001, workdir: __dirname }); server.initialize(); </code></pre>
+
+    <hr>
+
+    <h2>🛠️ Desarrollo</h2>
+    <p>Si deseas contribuir o reportar problemas, visita nuestro repositorio en GitHub:<br> <a
+            href="https://github.com/stexcore/api-engine">https://github.com/stexcore/api-engine</a> </p>
+
+    <hr>
+</article>

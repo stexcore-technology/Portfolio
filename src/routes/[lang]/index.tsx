@@ -5,6 +5,7 @@ import Present from "~/components/present/present";
 import styles from "./index.module.css";
 import useLang from "~/hooks/useLang";
 import LangProvider from "~/providers/lang.provider";
+import LangButton from "~/components/lang-button/lang-button";
 
 const PageComponent = component$(() => {
   // Load lang
@@ -12,25 +13,28 @@ const PageComponent = component$(() => {
 
   return (
     <main class={styles["home"]}>
+      <ul class={[styles["lang-content"], "smooth"]}>
+        <LangButton></LangButton>
+      </ul>
       <GalaticSpace class="smooth">
         <div class={styles["home-content"]}>
           <nav class={[styles["nav"], "smooth"]}>
             <ul>
               <li>
-                <Link class={styles["link-nav"]} href="/projects" title={lang["navbar:home"]?.navbar.projects.tooltip}>
-                  {lang["navbar:home"]?.navbar.projects.label}
+                <Link class={styles["link-nav"]} href={`/${lang.value.lang_type}/projects`} title={lang.value["navbar:home"]?.navbar.projects.tooltip}>
+                  {lang.value["navbar:home"]?.navbar.projects.label}
                 </Link>
               </li>
               <li>
-                <Link class={styles["link-nav"]} href="/contact" title={lang["navbar:home"]?.navbar.contact.tooltip}>
-                  {lang["navbar:home"]?.navbar.contact.label}
+                <Link class={styles["link-nav"]} href={`/${lang.value.lang_type}/contact`} title={lang.value["navbar:home"]?.navbar.contact.tooltip}>
+                  {lang.value["navbar:home"]?.navbar.contact.label}
                 </Link>
               </li>
             </ul>
           </nav>
-          <Present label={lang["home"]?.header || ""}></Present>
+          <Present label={lang.value["home"]?.header || ""}></Present>
           <p class={[styles["typegraphy"], "smooth"]}>
-            {lang["home"]?.phrase}
+            {lang.value["home"]?.phrase}
           </p>
         </div>
       </GalaticSpace>

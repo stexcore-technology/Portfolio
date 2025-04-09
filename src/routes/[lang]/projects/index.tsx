@@ -1,4 +1,4 @@
-import { component$, Slot, useStylesScoped$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import IconButton from "~/components/icon-button/icon-button";
 import CardProject from "~/components/card-project/card-project";
 import Navbar, { NavItem } from "~/components/navbar/navbar";
@@ -12,6 +12,7 @@ import styles from "./index.css?inline";
 import visitsService from "~/services/visits.service";
 import LangProvider from "~/providers/lang.provider";
 import useLang from "~/hooks/useLang";
+import LangButton from "~/components/lang-button/lang-button";
 
 const useVisits = routeLoader$(async () => {
     const [
@@ -36,6 +37,7 @@ const useVisits = routeLoader$(async () => {
 
 const PageComponent = component$(() => {
     const lang = useLang(["navbar:home", "projects"]);
+    
     // Load styles
     useStylesScoped$(styles);
     // Visits
@@ -43,52 +45,52 @@ const PageComponent = component$(() => {
     // Load navigate
     const navigate = useNavigate();
 
-    console.log("LAYOUT", lang);
-
     return (
         <>
             <Navbar>
-                <IconButton q:slot="start" onClick$={() => navigate("..")} title={lang["navbar:home"]?.navbar.back.tooltip}>
+                <IconButton q:slot="start" onClick$={() => navigate("..")} title={lang.value["navbar:home"]?.navbar.back.tooltip}>
                     <BackIcon></BackIcon>
                 </IconButton>
-                <NavItem href="/projects" title={lang["navbar:home"]?.navbar.projects.tooltip}>
-                    {lang["navbar:home"]?.navbar.projects.label}
+                <NavItem href={`/${lang.value.lang_type}/projects`} title={lang.value["navbar:home"]?.navbar.projects.tooltip}>
+                    {lang.value["navbar:home"]?.navbar.projects.label}
                 </NavItem>
-                <NavItem href="/contact" title={lang["navbar:home"]?.navbar.contact.tooltip}>
-                    {lang["navbar:home"]?.navbar.contact.label}
+                <NavItem href={`/${lang.value.lang_type}/contact`} title={lang.value["navbar:home"]?.navbar.contact.tooltip}>
+                    {lang.value["navbar:home"]?.navbar.contact.label}
                 </NavItem>
+                <Box px={10}></Box>
+                <LangButton></LangButton>
             </Navbar>
             <MainContent>
                 <Header
-                    title={lang.projects?.header.title || ""}
-                    description={lang.projects?.header.description || ""}
+                    title={lang.value.projects?.header.title || ""}
+                    description={lang.value.projects?.header.description || ""}
                 ></Header>
                 <Divider></Divider>
                 <Box py={40}>
                     <div class="grid-container">
                         <CardProject
-                            href="/projects/indexed-db"
+                            href={`/${lang.value.lang_type}/projects/indexed-db`}
                             title="@stexcore/indexed-db"
                             details="Simplifies client-side data management by providing a typed JavaScript library on top of IndexedDB. Allows CRUD operations and conditional queries with a database-like structure."
                             date="December 13, 2024"
                             views={visits.value.indexedDB}
                         ></CardProject>
                         <CardProject
-                            href="/projects/http-status"
+                            href={`/${lang.value.lang_type}/projects/http-status`}
                             title="@stexcore/http-status"
                             details="A clean, TypeScript-compatible library of HTTP status codes for managing responses and errors in any HTTP framework."
                             date="April 1, 2025"
                             views={visits.value.httpStatus}
                         ></CardProject>
                         <CardProject
-                            href="/projects/api-engine"
+                            href={`/${lang.value.lang_type}/projects/api-engine`}
                             title="@stexcore/api-engine"
                             details="Express-powered API engine for modular and scalable backend development. Manage services, controllers, middlewares, and schemas dynamically."
                             date="April 1, 2025"
                             views={visits.value.apiEngine}
                         ></CardProject>
                         <CardProject
-                            href="/projects/create-stexcore-api"
+                            href={`/${lang.value.lang_type}/projects/create-stexcore-api`}
                             title="create-stexcore-api"
                             details="CLI tool for fast API project initialization in Node.js. Uses Express and a scalable structure for streamlined backend setup."
                             date="April 2, 2025"

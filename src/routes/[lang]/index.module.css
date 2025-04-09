@@ -49,3 +49,13 @@
     padding: 0px 20px;
     color: var(--text-color);
 }
+
+.lang-content {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    list-style: none;
+    z-index: 10;
+    margin: 0;
+    padding: 0;
+}

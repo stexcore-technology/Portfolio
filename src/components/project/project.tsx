@@ -9,6 +9,9 @@ import MainContent from "../main-content/main-content";
 import Navbar, { NavItem } from "../navbar/navbar";
 import { useNavigate } from "@builder.io/qwik-city";
 import { formatViews } from "~/utils/text.util";
+import Box from "../box/box";
+import LangButton from "../lang-button/lang-button";
+import LangProvider from "~/providers/lang.provider";
 
 interface IProjectProps {
     title: string,
@@ -22,7 +25,7 @@ export default component$<IProjectProps>((props) => {
     const navigate = useNavigate();
     
     return (
-        <>
+        <LangProvider segments={[]}>
             <Navbar>
                 <IconButton q:slot="start" onClick$={() => navigate("..")}>
                     <BackIcon></BackIcon>
@@ -36,6 +39,8 @@ export default component$<IProjectProps>((props) => {
                 <NavItem href="https://github.com/stexcore">
                     <GithubIcon></GithubIcon>
                 </NavItem>
+                <Box px={10}></Box>
+                <LangButton></LangButton>
             </Navbar>
             <MainContent>
                 <HeaderProject
@@ -47,6 +52,6 @@ export default component$<IProjectProps>((props) => {
                     <HtmlContent html={props.html}></HtmlContent>
                 </ContentProject>
             </MainContent>
-        </>
+        </LangProvider>
     );
 });

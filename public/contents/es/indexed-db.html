@@ -1,0 +1,88 @@
+<article>
+  <h2>Descripción</h2>
+  <p> Este proyecto es una biblioteca de JavaScript diseñada para proporcionar una estructura similar a una base de
+    datos para gestionar datos en el navegador. Sirve como una capa sobre la API de IndexedDB, permitiendo a los
+    usuarios interactuar con los datos en forma de tablas y realizar operaciones comunes de bases de datos, como CRUD
+    (Crear, Leer, Actualizar, Eliminar) y consultas condicionales. </p>
+  <p> La biblioteca está construida con un tipado fuerte para garantizar la integridad y validación de los datos, lo que
+    la convierte en una solución robusta para la gestión de datos del lado del cliente. Al abstraer las complejidades de
+    IndexedDB, esta biblioteca busca simplificar el proceso de trabajo con datos estructurados en aplicaciones
+    JavaScript. </p>
+
+  <h2>Características</h2>
+  <ul>
+    <li><strong>Operaciones CRUD</strong>: Métodos para crear, leer, actualizar y eliminar registros:</li>
+    <ul>
+      <li><code class="keyword">findOne</code></li>
+      <li><code class="keyword">findAll</code></li>
+      <li><code class="keyword">insert</code></li>
+      <li><code class="keyword">update</code></li>
+      <li><code class="keyword">delete</code></li>
+      <li><code class="keyword">count</code></li>
+    </ul>
+    <li><strong>Consultas Condicionales</strong>: Usa <code class="keyword">where</code> para filtrar registros
+      basándote en criterios específicos.</li>
+    <li><strong>Paginación</strong>: Implementa <code class="keyword">limit</code> y <code class="keyword">offset</code>
+      para una recuperación eficiente de datos.</li>
+    <li><strong>Esquemas de Tablas</strong>: Define estructuras de tablas usando objetos de JavaScript, especificando
+      los campos que cada tabla puede tener.</li>
+    <li><strong>Tipado Fuerte</strong>: Valida tipos de datos para minimizar errores en tiempo de ejecución.</li>
+  </ul>
+
+  <h2>Primeros Pasos</h2>
+
+  <h3>Requisitos Previos</h3>
+  <p> Asegúrate de tener Node.js instalado en tu máquina. Puedes descargarlo desde <a
+      href="https://nodejs.org/">nodejs.org</a>. </p>
+
+  <h3>Instalación</h3>
+  <p>1. Instala el paquete usando npm:</p>
+  <pre><code class="bash">npm install @stexcore/indexed-db</code></pre>
+
+  <h3>Uso</h3>
+  <p>A continuación, un ejemplo detallado de cómo usar la biblioteca de gestión de datos:</p>
+
+  <h4>1. Crear una Instancia de Base de Datos:</h4>
+  <pre><code> import { IndexedDB } from '@stexcore/indexed-db';
+  
+  const database = new IndexedDB("stexcore", { users: { id: { type: "number", primarykey: true, autoincrement: true }, username: { type: "string", unique: true }, phone: { type: "string", allow_null: true } } }); </code></pre>
+
+  <h4>2. Obtener Registros:</h4>
+  <h5>Buscar Todos los Registros:</h5>
+  <pre><code> database.getTable("users") .then((userTable) => { userTable.findAll() .then((records) => { console.log("Registros encontrados:", records); }) .catch((err) => { console.error(err); }); }) .catch((err) => { console.error(err); }); </code></pre>
+
+  <h4>3. Insertar Registros:</h4>
+  <pre><code> database.getTable("users") .then((user) => { user.insert({ username: "stexcore", phone: null }) .then((records) => { console.log("Registros insertados:", records); }) .catch((err) => { console.error(err); }); }) .catch((err) => { console.error(err); }); </code></pre>
+
+  <h4>3. Insertar Múltiples Registros:</h4>
+  <pre><code> <span class="comment">// obtener tabla</span> database.getTable(<span class="string">"users"</span>) .<span class="keyword">then</span>((user) => {
+
+    <span class="comment">// insertar muchos registros en la tabla</span> user.insert([ { username: <span class="string">"stexcore"</span>, phone: <span class="keyword">null</span> }, { username: <span class="string">"technology"</span>, phone: <span class="string">"+58 412 0000 000"</span> } ]) .<span class="keyword">then</span>((records) => { console.log(<span class="string">"Registros insertados:"</span>, records); }) .<span class="keyword">catch</span>((err) => { console.error(err); }); }) .<span class="keyword">catch</span>((err) => { console.error(err); }); </code></pre>
+
+  <h4>4. Actualizar Registros:</h4>
+  <p>Puedes actualizar registros existentes basándote en condiciones específicas.</p>
+  <pre><code> <span class="comment">// obtener tabla</span> database.getTable(<span class="string">"users"</span>) .<span class="keyword">then</span>((user) => {
+    
+    <span class="comment">// actualizar registros basados en las condiciones</span> user.update({ phone: <span class="keyword">null</span> }, { where: { username: <span class="string">"stexcore"</span> } }) .<span class="keyword">then</span>(({ n_affected }) => { console.log(<span class="string">"Registros actualizados:"</span>, n_affected); }) .<span class="keyword">catch</span>((err) => { console.error(err); }); }) .<span class="keyword">catch</span>((err) => { console.error(err); }); </code></pre>
+
+  <h4>5. Eliminar Registros:</h4>
+  <p>Puedes eliminar registros que coincidan con ciertos criterios.</p>
+  <pre><code> <span class="comment">// obtener tabla</span> database.getTable(<span class="string">"users"</span>) .<span class="keyword">then</span>((user) => {
+    
+    <span class="comment">// eliminar registros basados en las condiciones</span> user.delete({ where: { username: <span class="string">"stexcore"</span> } }) .<span class="keyword">then</span>(({ n_affected }) => { console.log(<span class="string">"Registros eliminados:"</span>, n_affected); }) .<span class="keyword">catch</span>((err) => { console.error(err); }); }) .<span class="keyword">catch</span>((err) => { console.error(err); }); </code></pre>
+
+  <h3>Nota</h3>
+  <p>Asegúrate de manejar los errores apropiadamente en tu aplicación para garantizar una experiencia fluida para el
+    usuario.</p>
+
+  <h2>Contribuciones</h2>
+  <p>¡Las contribuciones son bienvenidas! Si tienes sugerencias de mejoras o nuevas funcionalidades, abre un issue o
+    envía un pull request.</p>
+
+  <h2>Licencia</h2>
+  <p> Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo <a
+      href="https://github.com/stexcore/indexed-db/blob/main/LICENCE">LICENSE</a> para más detalles. </p>
+
+  <h2>Agradecimientos</h2>
+  <p> ¡Gracias por revisar este proyecto! Tus comentarios y contribuciones son muy apreciados. </p>
+</article>

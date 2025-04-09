@@ -4,7 +4,7 @@ import Project from "~/components/project/project";
 import visitsService from "~/services/visits.service";
 
 const useContent = routeLoader$(async (event) => {
-    const response = await fetch(new URL("/contents/http-status.html", event.url));
+    const response = await fetch(new URL("/contents/" + event.params.lang + "/http-status.html", event.url));
     const html = await response.text();
 
     const visits = await visitsService.incrementVisit("http-status");
