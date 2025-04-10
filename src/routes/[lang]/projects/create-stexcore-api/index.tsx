@@ -3,7 +3,9 @@ import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 import Project from "~/components/project/project";
 import useLang from "~/hooks/useLang";
 import LangProvider from "~/providers/lang.provider";
+import langService from "~/services/lang.service";
 import visitsService from "~/services/visits.service";
+import { ILangType } from "~/types/lang";
 
 const useContent = routeLoader$(async (event) => {
     const response = await fetch(new URL("/contents/" + event.params.lang + "/create-stexcore-api.html", event.url));
@@ -38,20 +40,20 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = {
-  title: "Create Stexcore Api CLI - Portfolio Stexcore",
-  meta: [
-    {
-      name: "description",
-      content: "A powerful CLI tool to simplify the initialization of API projects in Node.js. Utilizing Express and a scalable project structure, it enables developers to efficiently kick-start robust backend setups.",
-    },
-    {
-      name: "author",
-      content: "stexcore"
-    },
-    {
-      name: "keywords",
-      content: "portfolio, developments, project, typescript, backend, api, cli, library"
-    }
-  ],
+/**
+ * Head Page
+ * @param ctx Context
+ */
+export const head: DocumentHead = (ctx) => {
+  // Get lang
+  const segment = langService.getLang(ctx.params.lang as ILangType, "head:project:create-stexcore-api");
+
+  return {
+    title: segment.title,
+    meta: [
+      { name: "description", content: segment.description },
+      { name: "author", content: segment.author },
+      { name: "keywords", content: segment.keywords }
+    ],
+  }
 };

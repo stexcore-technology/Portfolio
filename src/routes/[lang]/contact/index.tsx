@@ -10,6 +10,8 @@ import LangProvider from "~/providers/lang.provider";
 import useLang from "~/hooks/useLang";
 import LangButton from "~/components/lang-button/lang-button";
 import Box from "~/components/box/box";
+import langService from "~/services/lang.service";
+import { ILangType } from "~/types/lang";
 
 const PageComponent = component$(() => {
   const lang = useLang(["navbar:home", "contact"]);
@@ -72,20 +74,20 @@ export default component$(() => {
   )
 });
 
-export const head: DocumentHead = {
-  title: "Contact - Portfolio Stexcore",
-  meta: [
-    {
-      name: "description",
-      content: "Discover the various methods to contact me through my portfolio. Find options like email, social media, and contact forms, designed to make professional communication easy and efficient.",
-    },
-    {
-      name: "author",
-      content: "stexcore"
-    },
-    {
-      name: "keywords",
-      content: "portfolio, projects, contact, whatsapp, email, github"
-    }
-  ],
+/**
+ * Head Page
+ * @param ctx Context
+ */
+export const head: DocumentHead = (ctx) => {
+  // Get lang
+  const segment = langService.getLang(ctx.params.lang as ILangType, "head:contact");
+
+  return {
+    title: segment.title,
+    meta: [
+      { name: "description", content: segment.description },
+      { name: "author", content: segment.author },
+      { name: "keywords", content: segment.keywords }
+    ],
+  }
 };

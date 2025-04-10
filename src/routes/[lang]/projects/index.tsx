@@ -13,6 +13,8 @@ import visitsService from "~/services/visits.service";
 import LangProvider from "~/providers/lang.provider";
 import useLang from "~/hooks/useLang";
 import LangButton from "~/components/lang-button/lang-button";
+import langService from "~/services/lang.service";
+import { ILangType } from "~/types/lang";
 
 const useVisits = routeLoader$(async () => {
     const [
@@ -111,20 +113,20 @@ export default component$(() => {
     );
 });
 
-export const head: DocumentHead = {
-  title: "Projects - Portfolio Stexcore",
-  meta: [
-    {
-      name: "description",
-      content: "Explore the projects and libraries I'm currently working on. Discover how I leverage my expertise in web development, Docker configurations, and dynamic Excel file generation to create innovative and efficient solutions.",
-    },
-    {
-      name: "author",
-      content: "stexcore"
-    },
-    {
-      name: "keywords",
-      content: "portfolio, developments, projects, typescript, html, css, qwik, backend, api, cli"
-    }
-  ],
+/**
+ * Head Page
+ * @param ctx Context
+ */
+export const head: DocumentHead = (ctx) => {
+  // Get lang
+  const segment = langService.getLang(ctx.params.lang as ILangType, "head:projects");
+
+  return {
+    title: segment.title,
+    meta: [
+      { name: "description", content: segment.description },
+      { name: "author", content: segment.author },
+      { name: "keywords", content: segment.keywords }
+    ],
+  }
 };

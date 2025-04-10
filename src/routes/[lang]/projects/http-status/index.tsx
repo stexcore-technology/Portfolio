@@ -3,7 +3,9 @@ import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 import Project from "~/components/project/project";
 import useLang from "~/hooks/useLang";
 import LangProvider from "~/providers/lang.provider";
+import langService from "~/services/lang.service";
 import visitsService from "~/services/visits.service";
+import { ILangType } from "~/types/lang";
 
 const useContent = routeLoader$(async (event) => {
     const response = await fetch(new URL("/contents/" + event.params.lang + "/http-status.html", event.url));
@@ -38,20 +40,20 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = {
-  title: "Http Status - Portfolio Stexcore",
-  meta: [
-    {
-      name: "description",
-      content: "A versatile collection of HTTP status codes designed for seamless use in any HTTP framework. Simplifies handling HTTP responses and errors with a user-friendly interface, fully compatible with TypeScript and various frameworks.",
-    },
-    {
-      name: "author",
-      content: "stexcore"
-    },
-    {
-      name: "keywords",
-      content: "portfolio, developments, project, typescript, api, http, status, library"
-    }
-  ],
+/**
+ * Head Page
+ * @param ctx Context
+ */
+export const head: DocumentHead = (ctx) => {
+  // Get lang
+  const segment = langService.getLang(ctx.params.lang as ILangType, "head:project:http-status");
+
+  return {
+    title: segment.title,
+    meta: [
+      { name: "description", content: segment.description },
+      { name: "author", content: segment.author },
+      { name: "keywords", content: segment.keywords }
+    ],
+  }
 };

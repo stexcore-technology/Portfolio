@@ -70,6 +70,13 @@ export interface ILangProjectItem {
     description: string
 }
 
+export interface IHeadPage {
+    title: string,
+    description: string,
+    author: string,
+    keywords: string
+}
+
 export interface ILang {
     "home": ILangHome,
     "projects": ILangProjects,
@@ -78,7 +85,14 @@ export interface ILang {
     "project:api-engine": ILangProjectItem,
     "project:create-stexcore-api": ILangProjectItem,
     "project:http-status": ILangProjectItem,
-    "project:indexed-db": ILangProjectItem
+    "project:indexed-db": ILangProjectItem,
+    "head:home": IHeadPage,
+    "head:projects": IHeadPage,
+    "head:contact": IHeadPage,
+    "head:project:api-engine": IHeadPage,
+    "head:project:create-stexcore-api": IHeadPage,
+    "head:project:http-status": IHeadPage,
+    "head:project:indexed-db": IHeadPage
 }
 
 export type ILangType = "es" | "en";

@@ -6,6 +6,8 @@ import styles from "./index.module.css";
 import useLang from "~/hooks/useLang";
 import LangProvider from "~/providers/lang.provider";
 import LangButton from "~/components/lang-button/lang-button";
+import langService from "~/services/lang.service";
+import { ILangType } from "~/types/lang";
 
 const PageComponent = component$(() => {
   // Load lang
@@ -50,20 +52,20 @@ export default component$(() => {
   )
 });
 
-export const head: DocumentHead = {
-  title: "Portfolio Stexcore",
-  meta: [
-    {
-      name: "description",
-      content: "StexCore Portfolio A Qwik-powered portfolio showcasing all my projects, highlighting expertise and creativity in development.",
-    },
-    {
-      name: "author",
-      content: "stexcore"
-    },
-    {
-      name: "keywords",
-      content: "portfolio, developments, projects, typescript, html, css, qwik, backend, api, cli"
-    }
-  ],
+/**
+ * Head Page
+ * @param ctx Context
+ */
+export const head: DocumentHead = (ctx) => {
+  // Get lang
+  const segment = langService.getLang(ctx.params.lang as ILangType, "head:home");
+
+  return {
+    title: segment.title,
+    meta: [
+      { name: "description", content: segment.description },
+      { name: "author", content: segment.author },
+      { name: "keywords", content: segment.keywords }
+    ],
+  }
 };
