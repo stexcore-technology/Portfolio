@@ -20,13 +20,21 @@
     <h2>📦 Uso</h2>
 
     <h3>Importación Básica y Ejemplo</h3>
-    <pre><code class="typescript"> import httpStatus from "@stexcore/http-status";
+    <pre><code class="typescript">import httpStatus from <span class="string">"@stexcore/http-status"</span>;
 
-// Crear una respuesta exitosa (200 OK) const response = httpStatus.ok("Operación exitosa", { id: 123 }); console.log(response);
+// Create a successful response (200 OK)
+const response = httpStatus.ok(<span class="string">"Operation successful"</span>, { id: <span class="number">123</span> });
+console.log(response);
 
-// Manejar un error (404 No Encontrado) const error = httpStatus.notFound("El recurso solicitado no fue encontrado"); console.log(error);
+// Handle an error (404 Not Found)
+const error = httpStatus.notFound(<span class="string">"The requested resource was not found"</span>);
+console.log(error);
 
-// Validar si un objeto es un HttpError if (httpStatus.isHttpError(error)) { console.error("¡Esto es un error HTTP!", error.message); } </code></pre>
+// Validate if an object is an HttpError
+if (httpStatus.isHttpError(error)) {
+    console.error(<span class="string">"This is an HTTP error!"</span>, error.message);
+}
+    </code></pre>
 
     <hr>
 
@@ -138,15 +146,27 @@
     <h2>💡 Ejemplo con Express</h2>
     <p>Aquí tienes un posible caso de uso para integrar esta biblioteca con <a
             href="https://expressjs.com/">Express</a>, un framework muy utilizado en Node.js:</p>
-    <pre><code class="typescript"> import express from "express"; import httpStatus from "@stexcore/http-status";
+    <pre><code class="typescript">import express from <span class="string">"express"</span>;
+import httpStatus from <span class="string">"@stexcore/http-status"</span>;
 
 const app = express();
 
-// Una ruta de ejemplo para devolver una respuesta exitosa app.get("/success", (req, res) => { res.json(httpStatus.ok("¡La operación fue exitosa!", { data: "Ejemplo de datos" })); });
+// A sample route to return a successful response
+app.get(<span class="string">"/success"</span>, (req, res) => {
+    res.json(httpStatus.ok(<span class="string">"The operation was successful!"</span>, { data: <span class="string">"Example data"</span> }));
+});
 
-// Una ruta para simular un error de servidor app.get("/error", (req, res) => { res.status(500).json(httpStatus.internalServerError("Ocurrió un error inesperado.", { traceId: "123-abc" })); });
+// A route to simulate a server error
+app.get(<span class="string">"/error"</span>, (req, res) => {
+    res.status(<span class="number">500</span>).json(httpStatus.internalServerError(<span class="string">"An unexpected error occurred."</span>, { traceId: <span class="string">"123-abc"</span> }));
+});
 
-// Iniciar el servidor const PORT = 3000; app.listen(PORT, () => { console.log(El servidor está corriendo en http://localhost:${PORT}); }); </code></pre>
+// Start the server
+const PORT = <span class="number">3000</span>;
+app.listen(PORT, () => {
+    console.log(<span class="string">`Server is running on http://localhost:${PORT}`</span>);
+});
+    </code></pre>
 
     <p>En este ejemplo:</p>
     <ul>

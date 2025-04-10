@@ -76,11 +76,19 @@
     </ul>
 
     <h4>Ejemplo:</h4>
-    <pre><code class="typescript"> import { RequestHandler } from "express"; import { Controller, Server } from "@stexcore/api-engine";
+    <pre><code class="typescript">import { RequestHandler } from <span class="string">"express"</span>;
+import { Controller, Server } from <span class="string">"@stexcore/api-engine"</span>;
 
-export default class UserController extends Controller { constructor(server: Server) { super(server); }
+export default class UserController extends Controller {
+    constructor(server: Server) {
+        super(server);
+    }
 
-public GET?: RequestHandler = (req, res) => { res.json({ mensaje: ID del Usuario: ${req.params.id_user} }); }; } </code></pre>
+    public GET?: RequestHandler = (req, res) => {
+        res.json({ message: <span class="string">`User ID: \${req.params.id_user}`</span> });
+    };
+}
+    </code></pre>
 
     <h3>📂 Esquemas</h3>
     <p>Los esquemas definen las reglas de validación para las solicitudes entrantes. Su nomenclatura sigue las mismas
@@ -88,9 +96,17 @@ public GET?: RequestHandler = (req, res) => { res.json({ mensaje: ID del Usuario
             class="string">.schema.ts</code>.</p>
 
     <h4>Ejemplo:</h4>
-    <pre><code class="typescript"> import { createSchema } from "@stexcore/api-engine"; import Joi from "joi";
+    <pre><code class="typescript">import { createSchema } from <span class="string">"@stexcore/api-engine"</span>;
+import Joi from <span class="string">"joi"</span>;
 
-export default createSchema({ GET: { query: Joi.object({ search: Joi.string().optional(), }), }, }); </code></pre>
+export default createSchema({
+    GET: {
+        query: Joi.object({
+            search: Joi.string().optional(),
+        }),
+    },
+});
+    </code></pre>
 
     <h3>📂 Middlewares</h3>
     <p>Los middlewares manejan preocupaciones transversales (por ejemplo, registro, autenticación). Para asegurarte de
@@ -111,11 +127,15 @@ export default createSchema({ GET: { query: Joi.object({ search: Joi.string().op
     </ul>
 
     <h4>Ejemplo:</h4>
-    <pre><code class="typescript"> import { RequestHandler } from "express";
+    <pre><code class="typescript">import { RequestHandler } from <span class="string">"express"</span>;
 
-const logMiddleware: RequestHandler = (req, res, next) => { console.log(Solicitud a ${req.path}); next(); };
+const logMiddleware: RequestHandler = (req, res, next) => {
+    console.log(<span class="string">`Request to \${req.path}`</span>);
+    next();
+};
 
-export default logMiddleware; </code></pre>
+export default logMiddleware;
+    </code></pre>
 
     <!-- Sección de Services -->
     <h3>📂 Servicios</h3>
@@ -130,20 +150,38 @@ export default logMiddleware; </code></pre>
     </p>
 
     <h4>Ejemplo:</h4>
-    <pre><code class="typescript"> import { Service } from "@stexcore/api-engine";
+    <pre><code class="typescript">import { Service } from <span class="string">"@stexcore/api-engine"</span>;
 
-export default class AuthService extends Service { public authenticateUser(token: string) { // Lógica de autenticación return token === "valid_token"; } } </code></pre>
+export default class AuthService extends Service {
+public authenticateUser(token: string) {
+    <span class="comment">// Authentication logic</span>
+    return token === <span class="string">"valid_token"</span>;
+}
+}
+</code></pre>
 
     <hr>
 
     <h2>🌐 Ejemplo Completo: Construyendo una API</h2>
     <h3>Estructura del Proyecto</h3>
-    <pre><code class="bash"> src/ ├── controllers/ │ ├── auth.user.[id_user].controller.ts ├── middlewares/ │ ├── auth/user/log.middleware.ts ├── schemas/ │ ├── auth.user.schema.ts ├── services/ │ ├── auth.service.ts ├── index.ts </code></pre>
+    <pre><code class="bash">src/
+├── controllers/
+│   ├── auth.user.[id_user].controller.ts
+├── middlewares/
+│   ├── auth/user/log.middleware.ts
+├── schemas/
+│   ├── auth.user.schema.ts
+├── services/
+│   ├── auth.service.ts
+├── index.ts
+</code></pre>
 
     <h4>Punto de Entrada</h4>
-    <pre><code class="typescript"> import { createServer } from "@stexcore/api-engine";
+    <pre><code class="typescript">import { createServer } from <span class="string">"@stexcore/api-engine"</span>;
 
-const server = createServer({ port: 9001, workdir: __dirname }); server.initialize(); </code></pre>
+const server = createServer({ port: 9001, workdir: __dirname });
+server.initialize();
+</code></pre>
 
     <hr>
 

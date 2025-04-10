@@ -1,65 +1,80 @@
-# Qwik City App ⚡️
+# Stexcore Portfolio
 
-- [Qwik Docs](https://qwik.dev/)
-- [Discord](https://qwik.dev/chat)
-- [Qwik GitHub](https://github.com/QwikDev/qwik)
-- [@QwikDev](https://twitter.com/QwikDev)
-- [Vite](https://vitejs.dev/)
+Welcome to the repository for **Stexcore's portfolio**, a modern and lightweight tool to elegantly showcase your projects. Designed with simplicity, multilingual support, and a focus on performance, this portfolio is perfect for developers, creatives, and startups.
 
----
+## 🌀 Description
 
-## Project Structure
+This project combines **Qwik** with an interactive user experience to create a seamless and enjoyable navigation. The homepage features a minimalist galaxy where stars move dynamically as the mouse moves, adding a touch of interactivity while keeping performance in mind.
 
-This project is using Qwik with [QwikCity](https://qwik.dev/qwikcity/overview/). QwikCity is just an extra set of tools on top of Qwik to make it easier to build a full site, including directory-based routing, layouts, and more.
+The portfolio includes:
+- **Homepage**: A warm welcome with a unique design and a personal motto: _"I like to work without many dependencies."_ 
+- **Projects**: A clean and organized list showing the name, description, creation date, and views of each project.
+- **Contact**: A section with all the ways to connect with you.
+- **Project View**: Detailed information about the selected project, including its `README` documentation.
 
-Inside your project, you'll see the following directory structure:
+## 🌐 Main Routes
 
-```
-├── public/
-│   └── ...
-└── src/
-    ├── components/
-    │   └── ...
-    └── routes/
-        └── ...
-```
+The portfolio organizes its routes in a simple and accessible way:
+- `/:lang` → Homepage with the interactive galaxy.
+- `/:lang/projects` → Projects list with key details.
+- `/:lang/contact` → Contact information.
+- `/:lang/projects/:project-name` → Full details and the `README` of the selected project.
 
-- `src/routes`: Provides the directory-based routing, which can include a hierarchy of `layout.tsx` layout files, and an `index.tsx` file as the page. Additionally, `index.ts` files are endpoints. Please see the [routing docs](https://qwik.dev/qwikcity/routing/overview/) for more info.
+> **Note**: This project supports two languages: **English** and **Spanish**, adapting to the user's preference.
 
-- `src/components`: Recommended directory for components.
+## ✨ Features
 
-- `public`: Any static assets, like images, can be placed in the public directory. Please see the [Vite public directory](https://vitejs.dev/guide/assets.html#the-public-directory) for more info.
+- **Interactive Interface**: Dynamic design with moving stars.
+- **Multilingual**: Effortlessly switch between English and Spanish.
+- **Simplicity and Performance**: Built with minimal dependencies for a fast and scalable experience.
+- **Project Details**: Displays complete information for each project, emphasizing clarity and organization.
 
-## Add Integrations and deployment
+## 🚀 Technologies Used
 
-Use the `npm run qwik add` command to add additional integrations. Some examples of integrations includes: Cloudflare, Netlify or Express Server, and the [Static Site Generator (SSG)](https://qwik.dev/qwikcity/guides/static-site-generation/).
+- **Qwik**: Primary framework for ultra-fast performance.
+- **Custom CSS**: Sleek and minimalist styles.
+- **GitHub**: Source of the project information.
+- **Multilingual Support**: Lightweight and easily extensible implementation.
 
-```shell
-npm run qwik add # or `yarn qwik add`
-```
+## 📂 Project Structure
 
-## Development
-
-Development mode uses [Vite's development server](https://vitejs.dev/). The `dev` command will server-side render (SSR) the output during development.
-
-```shell
-npm start # or `yarn start`
-```
-
-> Note: during dev mode, Vite may request a significant number of `.js` files. This does not represent a Qwik production build.
-
-## Preview
-
-The preview command will create a production build of the client modules, a production build of `src/entry.preview.tsx`, and run a local server. The preview server is only for convenience to preview a production build locally and should not be used as a production server.
-
-```shell
-npm run preview # or `yarn preview`
+```plaintext
+src/
+│
+├── components/       # Reusable UI components.
+├── routes/
+│   ├── [lang]/       # Language-based routes.
+│   │   ├── projects/ # Projects list and details.
+│   │   ├── contact/  # Contact information.
+├── styles/           # Custom styles.
+├── translations/     # Translation files (en, es).
+└── app.tsx           # Main entry point.
 ```
 
-## Production
+## 📝 Getting Started
 
-The production build will generate client and server modules by running both client and server build commands. The build command will use Typescript to run a type check on the source code.
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/stexcore/portfolio.git
+   ```
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open the project in your browser at `http://localhost:5173`.
 
-```shell
-npm run build # or `yarn build`
-```
+## 🎯 Next Steps
+
+- Add support for more languages.
+- Integrate a blog section for technical articles.
+- Improve accessibility and SEO.
+
+## 🧑‍💻 Contact
+
+Get in touch!
+- GitHub: [stexcore](https://github.com/stexcore)
+- Email: your-email@example.com

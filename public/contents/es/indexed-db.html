@@ -43,33 +43,140 @@
   <p>A continuación, un ejemplo detallado de cómo usar la biblioteca de gestión de datos:</p>
 
   <h4>1. Crear una Instancia de Base de Datos:</h4>
-  <pre><code> import { IndexedDB } from '@stexcore/indexed-db';
-  
-  const database = new IndexedDB("stexcore", { users: { id: { type: "number", primarykey: true, autoincrement: true }, username: { type: "string", unique: true }, phone: { type: "string", allow_null: true } } }); </code></pre>
+<pre><code><span class="keyword">import</span> { IndexedDB } <span class="keyword">from</span> <span class="string">'@stexcore/indexed-db'</span>;
+
+<span class="keyword">const</span> database = <span class="keyword">new</span> IndexedDB(<span class="string">"stexcore"</span>, {
+  users: {
+    id: {
+      type: <span class="string">"number"</span>,
+      primarykey: <span class="keyword">true</span>,
+      autoincrement: <span class="keyword">true</span>
+    },
+    username: {
+      type: <span class="string">"string"</span>,
+      unique: <span class="keyword">true</span>
+    },
+    phone: {
+      type: <span class="string">"string"</span>,
+      allow_null: <span class="keyword">true</span>
+    }
+  }
+});
+    </code></pre>
 
   <h4>2. Obtener Registros:</h4>
   <h5>Buscar Todos los Registros:</h5>
-  <pre><code> database.getTable("users") .then((userTable) => { userTable.findAll() .then((records) => { console.log("Registros encontrados:", records); }) .catch((err) => { console.error(err); }); }) .catch((err) => { console.error(err); }); </code></pre>
+  <pre><code>database.getTable(<span class="string">"users"</span>)
+  .<span class="keyword">then</span>((userTable) => {
+    userTable.findAll()
+      .<span class="keyword">then</span>((records) => {
+        console.log(<span class="string">"Searched records:"</span>, records);
+      })
+      .<span class="keyword">catch</span>((err) => {
+        console.error(err);
+      });
+  })
+  .<span class="keyword">catch</span>((err) => {
+    console.error(err);
+  });
+    </code></pre>
 
   <h4>3. Insertar Registros:</h4>
-  <pre><code> database.getTable("users") .then((user) => { user.insert({ username: "stexcore", phone: null }) .then((records) => { console.log("Registros insertados:", records); }) .catch((err) => { console.error(err); }); }) .catch((err) => { console.error(err); }); </code></pre>
+  <pre><code>database.getTable(<span class="string">"users"</span>)
+  .<span class="keyword">then</span>((user) => {
+    user.insert({
+      username: <span class="string">"stexcore"</span>,
+      phone: <span class="keyword">null</span>
+    })
+      .<span class="keyword">then</span>((records) => {
+        console.log(<span class="string">"Records inserted:"</span>, records);
+      })
+      .<span class="keyword">catch</span>((err) => {
+        console.error(err);
+      });
+  })
+  .<span class="keyword">catch</span>((err) => {
+    console.error(err);
+  });
+    </code></pre>
 
   <h4>3. Insertar Múltiples Registros:</h4>
-  <pre><code> <span class="comment">// obtener tabla</span> database.getTable(<span class="string">"users"</span>) .<span class="keyword">then</span>((user) => {
+  <pre><code><span class="comment">// get table</span>
+database.getTable(<span class="string">"users"</span>)
+  .<span class="keyword">then</span>((user) => {
 
-    <span class="comment">// insertar muchos registros en la tabla</span> user.insert([ { username: <span class="string">"stexcore"</span>, phone: <span class="keyword">null</span> }, { username: <span class="string">"technology"</span>, phone: <span class="string">"+58 412 0000 000"</span> } ]) .<span class="keyword">then</span>((records) => { console.log(<span class="string">"Registros insertados:"</span>, records); }) .<span class="keyword">catch</span>((err) => { console.error(err); }); }) .<span class="keyword">catch</span>((err) => { console.error(err); }); </code></pre>
+    <span class="comment">// insert many records into table</span>
+    user.insert([
+      {
+        username: <span class="string">"stexcore"</span>,
+        phone: <span class="keyword">null</span>
+      },
+      {
+        username: <span class="string">"technology"</span>,
+        phone: <span class="string">"+58 412 0000 000"</span>
+      }
+    ])
+      .<span class="keyword">then</span>((records) => {
+        console.log(<span class="string">"Records inserted:"</span>, records);
+      })
+      .<span class="keyword">catch</span>((err) => {
+        console.error(err);
+      });
+  })
+  .<span class="keyword">catch</span>((err) => {
+    console.error(err);
+  });
+    </code></pre>
 
   <h4>4. Actualizar Registros:</h4>
   <p>Puedes actualizar registros existentes basándote en condiciones específicas.</p>
-  <pre><code> <span class="comment">// obtener tabla</span> database.getTable(<span class="string">"users"</span>) .<span class="keyword">then</span>((user) => {
-    
-    <span class="comment">// actualizar registros basados en las condiciones</span> user.update({ phone: <span class="keyword">null</span> }, { where: { username: <span class="string">"stexcore"</span> } }) .<span class="keyword">then</span>(({ n_affected }) => { console.log(<span class="string">"Registros actualizados:"</span>, n_affected); }) .<span class="keyword">catch</span>((err) => { console.error(err); }); }) .<span class="keyword">catch</span>((err) => { console.error(err); }); </code></pre>
+  <pre><code><span class="comment">// get table</span>
+database.getTable(<span class="string">"users"</span>)
+  .<span class="keyword">then</span>((user) => {
+
+    <span class="comment">// update records based on the conditions</span>
+    user.update({
+      phone: <span class="keyword">null</span>
+    }, {
+      where: {
+        username: <span class="string">"stexcore"</span>
+      }
+    })
+      .<span class="keyword">then</span>(({ n_affected }) => {
+        console.log(<span class="string">"Records updated:"</span>, n_affected);
+      })
+      .<span class="keyword">catch</span>((err) => {
+        console.error(err);
+      });
+  })
+  .<span class="keyword">catch</span>((err) => {
+    console.error(err);
+  });
+    </code></pre>
 
   <h4>5. Eliminar Registros:</h4>
   <p>Puedes eliminar registros que coincidan con ciertos criterios.</p>
-  <pre><code> <span class="comment">// obtener tabla</span> database.getTable(<span class="string">"users"</span>) .<span class="keyword">then</span>((user) => {
-    
-    <span class="comment">// eliminar registros basados en las condiciones</span> user.delete({ where: { username: <span class="string">"stexcore"</span> } }) .<span class="keyword">then</span>(({ n_affected }) => { console.log(<span class="string">"Registros eliminados:"</span>, n_affected); }) .<span class="keyword">catch</span>((err) => { console.error(err); }); }) .<span class="keyword">catch</span>((err) => { console.error(err); }); </code></pre>
+  <pre><code><span class="comment">// get table</span>
+database.getTable(<span class="string">"users"</span>)
+  .<span class="keyword">then</span>((user) => {
+
+    <span class="comment">// delete records based on the conditions</span>
+    user.delete({
+      where: {
+        username: <span class="string">"stexcore"</span>
+      }
+    })
+      .<span class="keyword">then</span>(({ n_affected }) => {
+        console.log(<span class="string">"Records deleted:"</span>, n_affected);
+      })
+      .<span class="keyword">catch</span>((err) => {
+        console.error(err);
+      });
+  })
+  .<span class="keyword">catch</span>((err) => {
+    console.error(err);
+  });
+    </code></pre>
 
   <h3>Nota</h3>
   <p>Asegúrate de manejar los errores apropiadamente en tu aplicación para garantizar una experiencia fluida para el

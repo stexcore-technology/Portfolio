@@ -1,6 +1,8 @@
 import { component$ } from "@builder.io/qwik";
 import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 import Project from "~/components/project/project";
+import useLang from "~/hooks/useLang";
+import LangProvider from "~/providers/lang.provider";
 import visitsService from "~/services/visits.service";
 
 const useContent = routeLoader$(async (event) => {
@@ -13,18 +15,27 @@ const useContent = routeLoader$(async (event) => {
     return { html, views };
 });
 
-export default component$(() => {
+const PageComponent = component$(() => {
     // HTML and views
     const info = useContent();
+    const lang = useLang(["project:http-status"]);
     
     return (
         <Project
-            title="http-status"
-            description="A collection of HTTP status codes for general use in any HTTP framework."
+            title={lang.value["project:http-status"]?.title || ""}
+            description={lang.value["project:http-status"]?.description || ""}
             html={info.value.html}
             views={info.value.views}
         ></Project>
     );
+});
+
+export default component$(() => {
+  return (
+    <LangProvider segments={["project:http-status"]}>
+      <PageComponent></PageComponent>
+    </LangProvider>
+  );
 });
 
 export const head: DocumentHead = {

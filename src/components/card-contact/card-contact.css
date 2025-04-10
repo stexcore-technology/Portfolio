@@ -1,5 +1,5 @@
 .icon {
-    transition: 0.5s margin-top;
+    /* transition: 0.5s margin-top; */
     border: 1px solid var(--text-color);
     padding: 10px 10px;
     margin-top: 40px;
@@ -7,7 +7,7 @@
 }
 
 .icon-line {
-    transition: 0.5s height;
+    /* transition: 0.5s height; */
     height: 250px;
     width: 1px;
     background-image: linear-gradient(var(--text-color), var(--text-color-secondary), transparent);
@@ -18,7 +18,7 @@
 }
 
 .contact {
-    transition: 0.5s margin-top;
+    /* transition: 0.5s margin-top; */
     margin-top: 60px;
     font-weight: bold;
     text-wrap: nowrap;
@@ -26,7 +26,7 @@
 }
 
 .platform {
-    transition: 0.5s margin-top;
+    /* transition: 0.5s margin-top; */
     margin-top: 10px;
     text-wrap: nowrap;
     font-weight: bold;

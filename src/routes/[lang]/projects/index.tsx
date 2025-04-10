@@ -70,30 +70,30 @@ const PageComponent = component$(() => {
                     <div class="grid-container">
                         <CardProject
                             href={`/${lang.value.lang_type}/projects/indexed-db`}
-                            title="@stexcore/indexed-db"
-                            details="Simplifies client-side data management by providing a typed JavaScript library on top of IndexedDB. Allows CRUD operations and conditional queries with a database-like structure."
-                            date="December 13, 2024"
+                            title={lang.value.projects?.projects["indexed-db"].package_name || ""}
+                            details={lang.value.projects?.projects["indexed-db"].description || ""}
+                            date={lang.value.projects?.projects["indexed-db"].date_creation || ""}
                             views={visits.value.indexedDB}
                         ></CardProject>
                         <CardProject
                             href={`/${lang.value.lang_type}/projects/http-status`}
-                            title="@stexcore/http-status"
-                            details="A clean, TypeScript-compatible library of HTTP status codes for managing responses and errors in any HTTP framework."
-                            date="April 1, 2025"
+                            title={lang.value.projects?.projects["http-status"].package_name || ""}
+                            details={lang.value.projects?.projects["http-status"].description || ""}
+                            date={lang.value.projects?.projects["http-status"].date_creation || ""}
                             views={visits.value.httpStatus}
                         ></CardProject>
                         <CardProject
                             href={`/${lang.value.lang_type}/projects/api-engine`}
-                            title="@stexcore/api-engine"
-                            details="Express-powered API engine for modular and scalable backend development. Manage services, controllers, middlewares, and schemas dynamically."
-                            date="April 1, 2025"
+                            title={lang.value.projects?.projects["api-engine"].package_name || ""}
+                            details={lang.value.projects?.projects["api-engine"].description || ""}
+                            date={lang.value.projects?.projects["api-engine"].date_creation || ""}
                             views={visits.value.apiEngine}
                         ></CardProject>
                         <CardProject
                             href={`/${lang.value.lang_type}/projects/create-stexcore-api`}
-                            title="create-stexcore-api"
-                            details="CLI tool for fast API project initialization in Node.js. Uses Express and a scalable structure for streamlined backend setup."
-                            date="April 2, 2025"
+                            title={lang.value.projects?.projects["create-stexcore-api"].package_name || ""}
+                            details={lang.value.projects?.projects["create-stexcore-api"].description || ""}
+                            date={lang.value.projects?.projects["create-stexcore-api"].date_creation || ""}
                             views={visits.value.createStexcoreApi}
                         ></CardProject>
                     </div>

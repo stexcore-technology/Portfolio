@@ -1,6 +1,8 @@
 import { component$ } from "@builder.io/qwik";
 import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 import Project from "~/components/project/project";
+import useLang from "~/hooks/useLang";
+import LangProvider from "~/providers/lang.provider";
 import visitsService from "~/services/visits.service";
 
 const useContent = routeLoader$(async (event) => {
@@ -13,18 +15,27 @@ const useContent = routeLoader$(async (event) => {
     return { html, views };
 });
 
-export default component$(() => {
+const PageComponent = component$(() => {
     // HTML and Views
     const info = useContent();
+    const lang = useLang(["project:api-engine"]);
     
     return (
         <Project
-            title="api-engine"
-            description="Engine for rapidly developing APIs using Express under the hood."
+            title={lang.value["project:api-engine"]?.title || ""}
+            description={lang.value["project:api-engine"]?.description || ""}
             html={info.value.html}
             views={info.value.views}
         ></Project>
     );
+});
+
+export default component$(() => {
+  return (
+    <LangProvider segments={["project:api-engine"]}>
+      <PageComponent></PageComponent>
+    </LangProvider>
+  );
 });
 
 export const head: DocumentHead = {

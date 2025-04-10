@@ -1,6 +1,8 @@
 import { component$ } from "@builder.io/qwik";
 import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 import Project from "~/components/project/project";
+import useLang from "~/hooks/useLang";
+import LangProvider from "~/providers/lang.provider";
 import visitsService from "~/services/visits.service";
 
 const useContent = routeLoader$(async (event) => {
@@ -13,18 +15,27 @@ const useContent = routeLoader$(async (event) => {
     return { html, views };
 });
 
-export default component$(() => {
+const PageComponent = component$(() => {
     // HTML and views
     const info = useContent();
+    const lang = useLang(["project:create-stexcore-api"]);
     
     return (
         <Project
-            title="create-stexcore-api"
-            description="A powerful CLI tool designed to streamline the initialization of API projects in Node.js."
+            title={lang.value["project:create-stexcore-api"]?.title || ""}
+            description={lang.value["project:create-stexcore-api"]?.description || ""}
             html={info.value.html}
             views={info.value.views}
         ></Project>
     );
+});
+
+export default component$(() => {
+  return (
+    <LangProvider segments={["project:create-stexcore-api"]}>
+      <PageComponent></PageComponent>
+    </LangProvider>
+  );
 });
 
 export const head: DocumentHead = {
