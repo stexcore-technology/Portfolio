@@ -18,16 +18,16 @@ interface IBoxProps {
 export default component$<IBoxProps>((props) => {
 
     // Margin
-    let ml = props.ml ?? props.mx;
-    let mr = props.mr ?? props.mx;
-    let mt = props.mt ?? props.my;
-    let mb = props.mb ?? props.my;
+    const ml = props.ml ?? props.mx;
+    const mr = props.mr ?? props.mx;
+    const mt = props.mt ?? props.my;
+    const mb = props.mb ?? props.my;
 
     // Padding
-    let pl = props.pl ?? props.px;
-    let pr = props.pr ?? props.px;
-    let pt = props.pt ?? props.py;
-    let pb = props.pb ?? props.py;
+    const pl = props.pl ?? props.px;
+    const pr = props.pr ?? props.px;
+    const pt = props.pt ?? props.py;
+    const pb = props.pb ?? props.py;
 
     return (
         <div style={{ 

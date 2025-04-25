@@ -52,6 +52,6 @@ export default new class LangService {
       
         // Retornar solo el idioma principal
         return languages[0]?.language || "en";
-    };
+    }
     
 }

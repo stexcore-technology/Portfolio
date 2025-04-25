@@ -8,5 +8,6 @@ if(!existsSync(path.resolve(".data"))) {
 
 export default new Sequelize({
     dialect: "sqlite",
-    storage: path.resolve(".data/database.sqlite")
+    storage: path.resolve(".data/database.sqlite"),
+    logging: false
 });

@@ -1,4 +1,4 @@
-import { $, component$, HTMLAttributeAnchorTarget, Slot, useStore, useStylesScoped$, useVisibleTask$ } from "@builder.io/qwik";
+import { $, component$, type HTMLAttributeAnchorTarget, Slot, useStore, useStylesScoped$, useVisibleTask$ } from "@builder.io/qwik";
 import styles from "./card-button.css?inline";
 import { Link } from "@builder.io/qwik-city";
 

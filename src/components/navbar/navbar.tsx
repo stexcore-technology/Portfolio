@@ -72,7 +72,7 @@ export default component$(() => {
         isActive.value = window.scrollY > 50;
     });
     
-    useOnWindow("scroll", $((ev) => {
+    useOnWindow("scroll", $(() => {
         isActive.value = window.scrollY > 50;
     }));
     

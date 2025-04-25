@@ -4,7 +4,7 @@ import { Galactic } from "./galatic.class";
 
 interface IGalacticSpaceProps {
     class?: string
-};
+}
 
 /**
  * export component

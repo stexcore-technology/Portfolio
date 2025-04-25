@@ -1,4 +1,4 @@
-import { $, component$, noSerialize, Slot, useContextProvider, useStore, useTask$ } from "@builder.io/qwik";
+import { $, component$, Slot, useContextProvider, useStore, useTask$ } from "@builder.io/qwik";
 import { useLocation, useNavigate } from "@builder.io/qwik-city";
 import langContext, { IContextLang } from "~/contexts/lang.context";
 import langService from "~/services/lang.service";
