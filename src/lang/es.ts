@@ -3,7 +3,7 @@ import { ILang } from "~/types/lang";
 const lang: ILang = {
     "home": {
         header: "stexcore",
-        phrase: "Mi objetivo al desarrollar no es tener dependencias excesivas."
+        phrase: "Mi objetivo al desarrollar es no tener dependencias excesivas."
     },
     "contact": {
         contacts: {

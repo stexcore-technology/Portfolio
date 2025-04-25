@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: portfolio:1.0.0-beta.1
+    image: portfolio:1.0.0-beta.2
     container_name: portfolio
     ports:
-      - "5173:5173"
+      - "3000:3000"
