@@ -1,15 +1,32 @@
-FROM node:23-alpine3.20
+FROM node:24-alpine3.21 AS builder
 
-RUN ["mkdir", "/home/app"]
+WORKDIR /app
 
-WORKDIR /home/app
+# Copiamos solo lo necesario para instalar dependencias
+COPY package.json package-lock.json ./
 
-COPY . /home/app/
+RUN npm ci
 
-RUN npm install
+# Copiamos el resto del código fuente
+COPY . .
+
+# Ejecutamos el build
 RUN npm run build
-RUN rm -rf .eslintignore .eslintrc.cjs .prettierignore package.json \
-public qwik.env.d.ts tmp tsconfig.json vite.config.ts src package-lock.json adapters
+
+# 🧼 Etapa 2: Final (runtime limpio)
+FROM node:24-alpine3.21 AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+# Solo copiamos lo necesario del builder
+COPY --from=builder /app/server ./server
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package.json ./
+
+# Instalamos solo dependencias de producción
+RUN npm install --omit=dev --ignore-scripts
 
 EXPOSE 3000
 
