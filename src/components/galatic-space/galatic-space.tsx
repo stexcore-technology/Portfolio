@@ -1,4 +1,4 @@
-import { $, component$, NoSerialize, noSerialize, Slot, useOnWindow, useSignal, useStore, useStylesScoped$, useVisibleTask$ } from "@builder.io/qwik";
+import { $, component$, type NoSerialize, noSerialize, Slot, useOnWindow, useSignal, useStore, useStylesScoped$, useVisibleTask$ } from "@builder.io/qwik";
 import styles from "./galatic-space.css?inline";
 import { Galactic } from "./galatic.class";
 
@@ -59,7 +59,7 @@ export default component$<IGalacticSpaceProps>((props) => {
     
                     if(ctx) {
                         // Clean star
-                        ctx.clearRect(0, 0, canvas.value?.width, canvas.value?.height);
+                        ctx.clearRect(0, 0, canvas.value.width, canvas.value.height);
         
                         // Draw star
                         for (const star of stars) {

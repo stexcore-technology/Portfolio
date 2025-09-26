@@ -1,4 +1,4 @@
-import { component$, JSXOutput } from "@builder.io/qwik";
+import { component$, type JSXOutput } from "@builder.io/qwik";
 
 interface IIconProps {
     size?: "sm" | "md" | "lg" | "xl" | "xxl",
@@ -10,8 +10,7 @@ function Icon({ size: sizeIcon = "lg", class: className }: IIconProps, callback:
         sizeIcon === "sm" ? 10 :
         sizeIcon === "md" ? 16 :
         sizeIcon === "lg" ? 24 :
-        sizeIcon === "xl" ? 32 :
-        sizeIcon === "xxl" ? 48 : 62
+        sizeIcon === "xl" ? 32 : 48
     );
     
     return callback(size, className);

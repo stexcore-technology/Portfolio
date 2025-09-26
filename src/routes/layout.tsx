@@ -1,5 +1,5 @@
 import { component$, Slot } from "@builder.io/qwik";
-import { ILangType } from "~/types/lang";
+import type { ILangType } from "~/types/lang";
 import type { RequestHandler } from "@builder.io/qwik-city";
 import langService from "~/services/lang.service";
 

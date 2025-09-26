@@ -1,4 +1,4 @@
-import { $, component$, JSXOutput, QRL, Slot, useOnWindow, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { $, component$, type JSXOutput, type QRL, Slot, useOnWindow, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
 import styles from "./navbar.module.css";
 

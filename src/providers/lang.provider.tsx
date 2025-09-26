@@ -1,8 +1,8 @@
 import { $, component$, Slot, useContextProvider, useStore, useTask$ } from "@builder.io/qwik";
 import { useLocation, useNavigate } from "@builder.io/qwik-city";
-import langContext, { IContextLang } from "~/contexts/lang.context";
+import langContext, { type IContextLang } from "~/contexts/lang.context";
 import langService from "~/services/lang.service";
-import { ILang, ILangType } from "~/types/lang";
+import type { ILang, ILangType } from "~/types/lang";
 
 interface ILangProviderProps {
     segments: (keyof ILang)[]

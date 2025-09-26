@@ -1,4 +1,4 @@
-import { component$, QRL, Slot, useStylesScoped$ } from "@builder.io/qwik";
+import { component$, type QRL, Slot, useStylesScoped$ } from "@builder.io/qwik";
 import styles from "./icon-button.css?inline";
 
 interface IIconButtonProps {

@@ -1,5 +1,5 @@
-import { createContextId, QRL } from "@builder.io/qwik";
-import { ILang, ILangType } from "~/types/lang";
+import { createContextId, type QRL } from "@builder.io/qwik";
+import type { ILang, ILangType } from "~/types/lang";
 
 export interface IContextLang {
     lang_type: ILangType

@@ -3,7 +3,7 @@ import IconButton from "~/components/icon-button/icon-button";
 import CardProject from "~/components/card-project/card-project";
 import Navbar, { NavItem } from "~/components/navbar/navbar";
 import { BackIcon } from "~/icons/icons";
-import { DocumentHead, routeLoader$, useNavigate } from "@builder.io/qwik-city";
+import { type DocumentHead, routeLoader$, useNavigate } from "@builder.io/qwik-city";
 import MainContent from "~/components/main-content/main-content";
 import Divider from "~/components/divider/divider";
 import Header from "~/components/header/header";
@@ -14,9 +14,9 @@ import LangProvider from "~/providers/lang.provider";
 import useLang from "~/hooks/useLang";
 import LangButton from "~/components/lang-button/lang-button";
 import langService from "~/services/lang.service";
-import { ILangType } from "~/types/lang";
+import type { ILangType } from "~/types/lang";
 
-const useVisits = routeLoader$(async () => {
+export const useVisits = routeLoader$(async () => {
     const [
         indexedDB,
         httpStatus,

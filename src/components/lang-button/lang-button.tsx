@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import { NavSelect } from "../navbar/navbar";
 import useLang from "~/hooks/useLang";
-import { ILangType } from "~/types/lang";
+import type { ILangType } from "~/types/lang";
 
 export default component$(() => {
     const lang = useLang([]);

@@ -1,15 +1,19 @@
+# System files
 .DS_Store
-.data
-.dockerignore
+
+# Local config folders
+.vscode
 .git
 .gitignore
-.vscode
+.dockerignore
 
-Dockerfile
-README.md
-dist
-docker-compose.yml
+# Files that should not be included in the build context
 node_modules
+dist
+tmp
+.data
+*.log
 
-package-lock.json
-server
+# Infrastructure files not needed for build
+docker-compose.yml
+README.md

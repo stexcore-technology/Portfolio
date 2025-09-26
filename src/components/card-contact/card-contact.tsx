@@ -1,4 +1,4 @@
-import { component$, HTMLAttributeAnchorTarget, JSXOutput, useStylesScoped$ } from "@builder.io/qwik";
+import { component$, type HTMLAttributeAnchorTarget, type JSXOutput, useStylesScoped$ } from "@builder.io/qwik";
 import CardButton from "../card-button/card-button";
 import styles from "./card-contact.css?inline";
 

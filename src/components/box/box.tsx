@@ -1,4 +1,4 @@
-import { component$, HTMLAttributes, Slot } from "@builder.io/qwik";
+import { component$, Slot } from "@builder.io/qwik";
 
 interface IBoxProps {
     justifyContent?: HTMLStyleElement["style"]["justifyContent"],

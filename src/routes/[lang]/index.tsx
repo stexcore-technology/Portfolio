@@ -7,7 +7,7 @@ import useLang from "~/hooks/useLang";
 import LangProvider from "~/providers/lang.provider";
 import LangButton from "~/components/lang-button/lang-button";
 import langService from "~/services/lang.service";
-import { ILangType } from "~/types/lang";
+import type { ILangType } from "~/types/lang";
 
 const PageComponent = component$(() => {
   // Load lang

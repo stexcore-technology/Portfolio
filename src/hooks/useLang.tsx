@@ -1,6 +1,6 @@
-import { $, QRL, Signal, useComputed$, useContext } from "@builder.io/qwik";
+import { $, type QRL, type Signal, useComputed$, useContext } from "@builder.io/qwik";
 import langContext from "~/contexts/lang.context";
-import { ILang, ILangType } from "~/types/lang";
+import type { ILang, ILangType } from "~/types/lang";
 
 export default function useLang<T extends keyof ILang>(segments: T[]): Signal<Partial<ILang> & { lang_type: ILangType, changeLang: QRL<(newLang: ILangType) => void> }> {
     const context = useContext(langContext);

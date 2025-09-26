@@ -1,13 +1,13 @@
 import { component$ } from "@builder.io/qwik";
-import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
+import { type DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 import Project from "~/components/project/project";
 import useLang from "~/hooks/useLang";
 import LangProvider from "~/providers/lang.provider";
 import langService from "~/services/lang.service";
 import visitsService from "~/services/visits.service";
-import { ILangType } from "~/types/lang";
+import type { ILangType } from "~/types/lang";
 
-const useContent = routeLoader$(async (event) => {
+export const useContent = routeLoader$(async (event) => {
     const response = await fetch(new URL("/contents/" + event.params.lang + "/create-stexcore-api.html", event.url));
     const html = await response.text();
 

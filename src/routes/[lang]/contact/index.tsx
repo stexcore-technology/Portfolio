@@ -1,5 +1,5 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { DocumentHead, useNavigate } from "@builder.io/qwik-city";
+import { type DocumentHead, useNavigate } from "@builder.io/qwik-city";
 import CardContact from "~/components/card-contact/card-contact";
 import IconButton from "~/components/icon-button/icon-button";
 import MainContent from "~/components/main-content/main-content";
@@ -11,7 +11,7 @@ import useLang from "~/hooks/useLang";
 import LangButton from "~/components/lang-button/lang-button";
 import Box from "~/components/box/box";
 import langService from "~/services/lang.service";
-import { ILangType } from "~/types/lang";
+import type { ILangType } from "~/types/lang";
 
 const PageComponent = component$(() => {
   const lang = useLang(["navbar:home", "contact"]);

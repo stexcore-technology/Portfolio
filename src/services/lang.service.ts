@@ -1,4 +1,4 @@
-import { ILang, ILangType } from "~/types/lang";
+import type { ILang, ILangType } from "~/types/lang";
 import lang_en from "../lang/en";
 import lang_es from "../lang/es";
 
@@ -44,7 +44,7 @@ export default new class LangService {
         // Dividir el encabezado en idiomas y prioridades
         const languages = acceptLanguage.split(",").map((lang) => {
           const [language, q] = lang.split(";q=");
-          return { language: language.trim()?.split("-")?.[0]?.toLocaleLowerCase(), priority: parseFloat(q) || 1 };
+          return { language: language.trim().split("-")[0]?.toLocaleLowerCase(), priority: parseFloat(q) || 1 };
         });
       
         // Ordenar por prioridad descendente
