@@ -11,6 +11,6 @@ RUN npm run build
 RUN rm -rf .eslintignore .eslintrc.cjs .prettierignore package.json \
 public qwik.env.d.ts tmp tsconfig.json vite.config.ts src package-lock.json adapters
 
-EXPOSE 5173
+EXPOSE 3000
 
 CMD ["node", "server/entry.express"]

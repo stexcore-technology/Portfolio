@@ -50,7 +50,7 @@ export default component$<ICardButton>(({ href, target, title }) => {
     });
 
     return (
-        <Link href={href} target={target} title={title}>
+        <Link prefetch={false} href={href} target={target} title={title}>
             <button class="card" onMouseMove$={handleMouseMove}>
                 <div class="circle" style={{ top: `${coors.y}px`, left: `${coors.x}px` }}></div>
                 <div class="content">

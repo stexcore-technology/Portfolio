@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
+import { DocumentHead, routeLoader$, z, zod$ } from "@builder.io/qwik-city";
 import Project from "~/components/project/project";
 import useLang from "~/hooks/useLang";
 import LangProvider from "~/providers/lang.provider";

@@ -1,6 +1,9 @@
-import { component$, Slot } from "@builder.io/qwik";
+import { component$, HTMLAttributes, Slot } from "@builder.io/qwik";
 
 interface IBoxProps {
+    justifyContent?: HTMLStyleElement["style"]["justifyContent"],
+    alignItems?: HTMLStyleElement["style"]["alignItems"],
+    display?: HTMLStyleElement["style"]["display"],
     px?: number,
     py?: number,
     pt?: number,
@@ -38,7 +41,10 @@ export default component$<IBoxProps>((props) => {
             marginTop: mt,
             marginBottom: mb,
             marginLeft: ml,
-            marginRight: mr
+            marginRight: mr,
+            justifyContent: props.justifyContent,
+            alignItems: props.alignItems,
+            display: props.display
         }}>
             <Slot></Slot>
         </div>
